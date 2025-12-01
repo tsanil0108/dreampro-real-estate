@@ -1,0 +1,729 @@
+/* BookVisit.css - Google-Inspired Color Combinations */
+
+:root {
+  /* Google-Inspired Color Palette */
+  --google-blue: #4285F4;
+  --google-red: #EA4335;
+  --google-yellow: #FBBC05;
+  --google-green: #34A853;
+  --google-gray: #5F6368;
+  
+  /* Dark Theme - Google Dark */
+  --google-dark-bg: #202124;
+  --google-dark-surface: #303134;
+  --google-dark-surface-2: #3C4043;
+  --google-dark-border: #5F6368;
+  --google-dark-text: #E8EAED;
+  --google-dark-text-secondary: #9AA0A6;
+  
+  /* Light Theme - Google Light */
+  --google-light-bg: #FFFFFF;
+  --google-light-surface: #F8F9FA;
+  --google-light-surface-2: #E8F0FE;
+  --google-light-border: #DADCE0;
+  --google-light-text: #3C4043;
+  --google-light-text-secondary: #5F6368;
+  
+  /* Accent Colors */
+  --accent-primary: var(--google-blue);
+  --accent-secondary: var(--google-green);
+  --accent-warning: var(--google-yellow);
+  --accent-danger: var(--google-red);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--google-blue), #669DF6);
+  --gradient-success: linear-gradient(135deg, var(--google-green), #4CAF50);
+  --gradient-warning: linear-gradient(135deg, var(--google-yellow), #FFC107);
+  --gradient-danger: linear-gradient(135deg, var(--google-red), #F44336);
+  --gradient-multicolor: linear-gradient(135deg, var(--google-blue), var(--google-green), var(--google-yellow), var(--google-red));
+}
+
+/* Dark Theme (Default) */
+.book-visit-page {
+    min-height: 100vh;
+    background: var(--google-dark-bg);
+    padding: 100px 20px 80px;
+    transition: all 0.3s ease;
+}
+
+/* Light Theme Class */
+.book-visit-page.light-theme {
+    background: var(--google-light-bg);
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    background: var(--gradient-multicolor);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.light-theme .page-header h1 {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 300;
+    color: var(--google-dark-text-secondary);
+}
+
+.light-theme .page-header p {
+    color: var(--google-light-text-secondary);
+}
+
+/* VERTICAL LAYOUT - Featured Properties on top, Booking Form on bottom */
+.book-visit-container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Featured Properties Section - Full Width */
+.featured-properties-section {
+    background: var(--google-dark-surface);
+    padding: 50px 40px;
+    border-radius: 20px;
+    border: 1px solid var(--google-dark-border);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.light-theme .featured-properties-section {
+    background: var(--google-light-surface);
+    border: 1px solid var(--google-light-border);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+}
+
+.featured-properties-section h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    text-align: center;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.featured-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    font-weight: 400;
+    text-align: center;
+    color: var(--google-dark-text-secondary);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.light-theme .featured-subtitle {
+    color: var(--google-light-text-secondary);
+}
+
+/* Properties Grid - Horizontal Layout for Featured Properties */
+.properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.property-card {
+    background: var(--google-dark-surface-2);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+}
+
+.light-theme .property-card {
+    background: var(--google-light-surface-2);
+    border: 2px solid transparent;
+}
+
+.property-card:hover {
+    border-color: var(--google-blue);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(66, 133, 244, 0.15);
+}
+
+.light-theme .property-card:hover {
+    box-shadow: 0 12px 40px rgba(66, 133, 244, 0.2);
+}
+
+.property-card.selected {
+    border-color: var(--google-blue);
+    box-shadow: 0 0 0 3px var(--google-blue), 0 12px 40px rgba(66, 133, 244, 0.25);
+}
+
+.property-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.property-card:hover .property-image {
+    transform: scale(1.05);
+}
+
+.property-info {
+    padding: 25px;
+}
+
+.property-info h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--google-dark-text);
+}
+
+.light-theme .property-info h3 {
+    color: var(--google-light-text);
+}
+
+.property-price {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    background: var(--gradient-success);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.property-address {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    color: var(--google-dark-text-secondary);
+}
+
+.light-theme .property-address {
+    color: var(--google-light-text-secondary);
+}
+
+.property-details {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.property-details span {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--google-dark-text);
+}
+
+.light-theme .property-details span {
+    color: var(--google-light-text);
+}
+
+.property-type {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(66, 133, 244, 0.1);
+    color: var(--google-blue);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    border: 1px solid rgba(66, 133, 244, 0.3);
+}
+
+.light-theme .property-type {
+    background: rgba(66, 133, 244, 0.08);
+}
+
+/* Property Type Specific Colors */
+.property-type[data-type="Apartment"] {
+    background: rgba(66, 133, 244, 0.1);
+    color: var(--google-blue);
+    border-color: rgba(66, 133, 244, 0.3);
+}
+
+.property-type[data-type="House"] {
+    background: rgba(52, 168, 83, 0.1);
+    color: var(--google-green);
+    border-color: rgba(52, 168, 83, 0.3);
+}
+
+.property-type[data-type="Villa"] {
+    background: rgba(251, 188, 5, 0.1);
+    color: var(--google-yellow);
+    border-color: rgba(251, 188, 5, 0.3);
+}
+
+.property-type[data-type="Condo"] {
+    background: rgba(234, 67, 53, 0.1);
+    color: var(--google-red);
+    border-color: rgba(234, 67, 53, 0.3);
+}
+
+.selected-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--gradient-success);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(52, 168, 83, 0.3);
+}
+
+/* Selection Info */
+.selection-info {
+    text-align: center;
+    padding: 25px;
+    background: var(--google-dark-surface-2);
+    border-radius: 12px;
+    border: 1px solid var(--google-dark-border);
+    margin-top: 20px;
+}
+
+.light-theme .selection-info {
+    background: var(--google-light-surface-2);
+    border: 1px solid var(--google-light-border);
+}
+
+.selected-property-info h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--google-dark-text);
+}
+
+.light-theme .selected-property-info h4 {
+    color: var(--google-light-text);
+}
+
+.selected-property-info p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.select-prompt {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 0;
+    color: var(--google-dark-text-secondary);
+}
+
+.light-theme .select-prompt {
+    color: var(--google-light-text-secondary);
+}
+
+/* Schedule Your Visit Form Section - Full Width */
+.booking-form-section {
+    background: var(--google-dark-surface);
+    padding: 50px 40px;
+    border-radius: 20px;
+    border: 1px solid var(--google-dark-border);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.light-theme .booking-form-section {
+    background: var(--google-light-surface);
+    border: 1px solid var(--google-light-border);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+}
+
+.booking-form-section h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    text-align: center;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--google-dark-text);
+}
+
+.light-theme .form-group label {
+    color: var(--google-light-text);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    padding: 16px 20px;
+    border: 2px solid var(--google-dark-border);
+    border-radius: 12px;
+    background: var(--google-dark-surface-2);
+    color: var(--google-dark-text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.light-theme .form-input,
+.light-theme .form-textarea,
+.light-theme .form-select {
+    border: 2px solid var(--google-light-border);
+    background: white;
+    color: var(--google-light-text);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--google-blue);
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
+    background: var(--google-dark-surface);
+}
+
+.light-theme .form-input:focus,
+.light-theme .form-textarea:focus,
+.light-theme .form-select:focus {
+    background: white;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+}
+
+.form-input:hover,
+.form-textarea:hover,
+.form-select:hover {
+    border-color: var(--google-blue);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Enhanced Form Features */
+.form-features {
+    background: var(--google-dark-surface-2);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--google-dark-border);
+    margin-top: 20px;
+}
+
+.light-theme .form-features {
+    background: var(--google-light-surface-2);
+    border: 1px solid var(--google-light-border);
+}
+
+.form-features h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: var(--google-dark-text);
+}
+
+.light-theme .form-features h4 {
+    color: var(--google-light-text);
+}
+
+.form-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.form-features li {
+    font-size: 0.95rem;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--google-dark-border);
+    color: var(--google-dark-text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.light-theme .form-features li {
+    border-bottom: 1px solid var(--google-light-border);
+    color: var(--google-light-text);
+}
+
+.form-features li:last-child {
+    border-bottom: none;
+}
+
+.form-features li.met {
+    color: var(--google-green);
+    font-weight: 500;
+}
+
+.form-features li.met::before {
+    content: "✓";
+    color: var(--google-green);
+    font-weight: bold;
+}
+
+.form-features li.pending {
+    color: var(--google-yellow);
+}
+
+.form-features li.pending::before {
+    content: "⏱";
+    color: var(--google-yellow);
+}
+
+/* Enhanced Submit Button with Google Style */
+.submit-btn {
+    padding: 18px 40px;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(66, 133, 244, 0.3);
+    margin-top: 20px;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+.submit-btn:hover:not(.disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(66, 133, 244, 0.4);
+}
+
+.submit-btn:active:not(.disabled) {
+    transform: translateY(0);
+}
+
+.submit-btn.disabled {
+    background: var(--google-gray);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.submit-btn.success {
+    background: var(--gradient-success);
+    box-shadow: 0 4px 16px rgba(52, 168, 83, 0.3);
+}
+
+.submit-btn.success:hover:not(.disabled) {
+    box-shadow: 0 8px 25px rgba(52, 168, 83, 0.4);
+}
+
+.form-note {
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: 400;
+    margin-top: 20px;
+    color: var(--google-dark-text-secondary);
+}
+
+.light-theme .form-note {
+    color: var(--google-light-text-secondary);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--google-dark-surface);
+    border: 1px solid var(--google-dark-border);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.light-theme .theme-toggle {
+    background: var(--google-light-surface);
+    border: 1px solid var(--google-light-border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    border-color: var(--google-blue);
+}
+
+.theme-toggle-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+/* Loading Animation */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success Animation */
+.success-animation {
+    animation: successPulse 0.6s ease-in-out;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .properties-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .featured-properties-section,
+    .booking-form-section {
+        padding: 40px 30px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .properties-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .property-details {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .featured-properties-section h2,
+    .booking-form-section h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .book-visit-page {
+        padding: 80px 15px 60px;
+    }
+    
+    .page-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .featured-properties-section,
+    .booking-form-section {
+        padding: 30px 20px;
+    }
+    
+    .property-info {
+        padding: 20px;
+    }
+    
+    .submit-btn {
+        padding: 16px 30px;
+        font-size: 1rem;
+    }
+    
+    .featured-properties-section h2,
+    .booking-form-section h2 {
+        font-size: 1.8rem;
+    }
+}
