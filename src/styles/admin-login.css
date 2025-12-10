@@ -1,0 +1,412 @@
+/* Admin Login Page */
+.admin-login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-container {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Left Panel - Info */
+.login-info-panel {
+  flex: 1;
+  background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+  color: white;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.brand-logo {
+  font-size: 60px;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.real-estate-icon, .interior-icon {
+  position: absolute;
+  font-size: 40px;
+}
+
+.real-estate-icon {
+  left: -20px;
+  top: -10px;
+  color: #ffd166;
+}
+
+.interior-icon {
+  right: -20px;
+  bottom: -10px;
+  color: #06d6a0;
+}
+
+.info-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.brand-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+}
+
+/* Platform Features */
+.platform-features {
+  flex: 1;
+}
+
+.feature-section {
+  margin-bottom: 30px;
+}
+
+.feature-section h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.feature-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-section li {
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.feature-section li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #06d6a0;
+  font-weight: bold;
+}
+
+/* Security Info */
+.security-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.security-icon {
+  font-size: 24px;
+  color: #ffd166;
+}
+
+.security-info p {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Right Panel - Login Form */
+.login-form-panel {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-card {
+  max-width: 400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.form-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2e59d9;
+  margin-bottom: 10px;
+}
+
+.form-subtitle {
+  color: #858796;
+  font-size: 16px;
+}
+
+/* Form Styles */
+.login-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #5a5c69;
+  margin-bottom: 8px;
+}
+
+.input-icon {
+  color: #4e73df;
+  font-size: 16px;
+}
+
+.password-input-group {
+  position: relative;
+}
+
+.password-input-group input {
+  padding-right: 50px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #858796;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.password-toggle:hover {
+  color: #4e73df;
+}
+
+/* Form Options */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-check-input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.form-check-label {
+  cursor: pointer;
+  color: #5a5c69;
+  font-size: 14px;
+}
+
+.forgot-link {
+  color: #4e73df;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* Login Button */
+.login-btn {
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* Demo Section */
+.demo-section {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: #f8f9fc;
+  border-radius: 10px;
+}
+
+.demo-label {
+  font-weight: 600;
+  color: #5a5c69;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.demo-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.demo-buttons button {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Login Footer */
+.login-footer {
+  margin-top: 30px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  color: #858796;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e3e6f0;
+}
+
+.divider span {
+  padding: 0 15px;
+}
+
+.alternative-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.alternative-actions .btn {
+  flex: 1;
+  justify-content: center;
+}
+
+.system-status {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8f9fc;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #5a5c69;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-indicator.online {
+  background: #1cc88a;
+}
+
+.status-indicator.secure {
+  background: #4e73df;
+}
+
+.copyright {
+  text-align: center;
+  color: #858796;
+  font-size: 14px;
+}
+
+/* Security Notice */
+.security-notice {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff3cd;
+  border: 1px solid #ffecb5;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #856404;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .login-container {
+    flex-direction: column;
+    max-width: 500px;
+  }
+  
+  .login-info-panel {
+    padding: 30px;
+  }
+  
+  .login-form-panel {
+    padding: 30px;
+  }
+  
+  .system-status {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-login-page {
+    padding: 10px;
+  }
+  
+  .login-info-panel,
+  .login-form-panel {
+    padding: 20px;
+  }
+  
+  .alternative-actions {
+    flex-direction: column;
+  }
+  
+  .brand-logo {
+    font-size: 40px;
+  }
+  
+  .real-estate-icon,
+  .interior-icon {
+    font-size: 30px;
+  }
+}

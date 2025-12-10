@@ -1,4 +1,4 @@
-// src/services/api.js
+// src/services/Api.js
 import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1';
@@ -85,7 +85,7 @@ const handleTokenRefresh = async (error, originalRequest) => {
     }
     
     originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-    return api(originalRequest);
+    return Api(originalRequest);
   } catch (refreshError) {
     clearAuthData();
     window.location.href = '/login';
@@ -109,7 +109,7 @@ const handleHttpError = (error) => {
 };
 
 // Create axios instance
-const api = axios.create({
+const Api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ const api = axios.create({
 });
 
 // Request interceptor
-api.interceptors.request.use(
+Api.interceptors.request.use(
   (config) => {
     // Check if we're online
     if (!navigator.onLine) {
@@ -148,7 +148,7 @@ api.interceptors.request.use(
 );
 
 // Response interceptor
-api.interceptors.response.use(
+Api.interceptors.response.use(
   (response) => {
     if (isDevelopment) {
       console.log(`✅ API Success: ${response.status} ${response.config.url}`);
@@ -206,8 +206,8 @@ export const handleApiError = (error) => {
 
 export const isOnline = () => navigator.onLine;
 
-// Add utility methods to api instance for convenience
-api.clearAuthData = clearAuthData;
-api.checkBackendReachability = checkBackendReachability;
+// Add utility methods to Api instance for convenience
+Api.clearAuthData = clearAuthData;
+Api.checkBackendReachability = checkBackendReachability;
 
-export default api;
+export default Api;

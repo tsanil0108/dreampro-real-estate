@@ -6,93 +6,64 @@ const Home = () => {
     const featuredProperties = [
         {
             id: 1,
-            title: "Modern Downtown Apartment",
-            price: 350000,
-            address: "123 Main St, New York, NY",
-            bedrooms: 2,
-            bathrooms: 2,
-            sqft: 1200,
-            type: "Apartment",
-            image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400"
+            title: "Paton Tower",
+            address: "Kandivali East, lokhandwala",
+            image: "https://patonconstructions.in/patontowers/images/img2.jpg"
         },
         {
             id: 2,
-            title: "Luxury Beach Villa",
-            price: 1250000,
-            address: "456 Ocean Drive, Miami, FL",
-            bedrooms: 4,
-            bathrooms: 3,
-            sqft: 3200,
-            type: "Villa",
-            image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=400"
+            title: "Godrej Nest Tower",
+            address: "Kandivali East, lokhandwala",
+            image: "https://cdn.blox.xyz/projects-2x/godrej-properties-godrej-nest-1746534958.jpg"
         },
         {
             id: 3,
-            title: "Contemporary City Loft",
-            price: 750000,
-            address: "789 Downtown Ave, Chicago, IL",
-            bedrooms: 3,
-            bathrooms: 2,
-            sqft: 1800,
-            type: "Loft",
-            image: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400"
+            title: "UK Tower",
+            address: "Kandivali East, hanuman nagar",
+            image: "https://www.ukrealty.in/project/luxecity-kandivali/img/about-us.jpg"
         },
         {
             id: 4,
-            title: "Mountain Retreat",
-            price: 950000,
-            address: "321 Alpine Road, Aspen, CO",
-            bedrooms: 5,
-            bathrooms: 4,
-            sqft: 4200,
-            type: "House",
-            image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400"
+            title: "Mahindra Vista",
+            address: "Kandivali East, damungar",
+            image: "https://projectvista-kandivali.in/public/admin/images/1708101584.jpg"
         },
         {
             id: 5,
-            title: "Urban Penthouse",
-            price: 2200000,
-            address: "567 Skyline Blvd, San Francisco, CA",
-            bedrooms: 3,
-            bathrooms: 3,
-            sqft: 2400,
-            type: "Penthouse",
-            image: "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=400"
+            title: "Aarambh Tower",
+            address: "Gandhi Nagar, Malad East, Mumbai, 400097",
+            image: "https://www.jllhomes.co.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fjll-global-gdim%2Fimage%2Fupload%2FIN%2FHorizon%2FResi%2FProd%2FJLL_Mum_Aarambh_273_EXT_primary.jpg&w=3840&q=75"
         },
         {
             id: 6,
-            title: "Suburban Family Home",
-            price: 650000,
-            address: "890 Maple Street, Boston, MA",
-            bedrooms: 4,
-            bathrooms: 2,
-            sqft: 2800,
-            type: "House",
-            image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400"
+            title: "Lodha Wood",
+            address: "Akurli Road, dhamunagar, kandivali east",
+            image: "https://wealthcreatorsheights.com/uploads/file-manager/lodha-wood.webp"
         }
     ];
 
     const services = [
         {
             icon: "🏠",
-            title: "Property Sales",
-            description: "Luxury residential and commercial properties"
+            title: "Home Sales",
+            description: "Luxury residential and commercial properties",
+            link: "/properties",
+            linkText: "Contact Agent"
         },
         {
             icon: "💰",
-            title: "Investment",
-            description: "Prime real estate investment opportunities"
+            title: "Home Buy",
+            description: "Prime real estate investment opportunities",
+            link: "/properties",
+            linkText: "View Properties"
         },
         {
             icon: "👨‍💼",
-            title: "Consultation",
-            description: "Expert real estate advisory services"
+            title: "Home Rent",
+            description: "Expert real estate advisory services",
+            link: "/contactagent",
+            linkText: "Contact Agent"
         },
-        {
-            icon: "🏢",
-            title: "Property Management",
-            description: "Comprehensive property management solutions"
-        }
     ];
 
     const locations = [
@@ -102,6 +73,99 @@ const Home = () => {
         { name: "CALIFORNIA", properties: 45 }
     ];
 
+    const interiorServices = [
+        {
+            icon: "🎨",
+            title: "Interior Design",
+            description: "Custom interior design solutions for residential and commercial spaces",
+            image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400",
+            link: "/interior",
+            linkText: "View Projects"
+        },
+        {
+            icon: "🛋️",
+            title: "Furniture & Decor",
+            description: "Premium furniture selection and decorative accessories",
+            image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400",
+            link: "/interior",
+            linkText: "Explore Designs"
+        },
+        {
+            icon: "🏗️",
+            title: "Space Planning",
+            description: "Optimize your space with expert layout and planning",
+            image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400",
+            link: "/interior",
+            linkText: "Learn More"
+        },
+        {
+            icon: "💡",
+            title: "Lighting Design",
+            description: "Custom lighting solutions to enhance your space",
+            image: "https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=400",
+            link: "/interior",
+            linkText: "View Solutions"
+        }
+    ];
+
+    const interiorProjects = [
+        {
+            id: 1,
+            title: "Modern Apartment Redesign",
+            type: "Residential",
+            area: "2,400 sq. ft.",
+            location: "New York, NY",
+            image: "https://images.unsplash.com/photo-1615529162924-f8605388467e?w=400"
+        },
+        {
+            id: 2,
+            title: "Luxury Villa Interior",
+            type: "Villa",
+            area: "5,200 sq. ft.",
+            location: "Miami, FL",
+            image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400"
+        },
+        {
+            id: 3,
+            title: "Office Space Transformation",
+            type: "Commercial",
+            area: "8,000 sq. ft.",
+            location: "Chicago, IL",
+            image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400"
+        },
+        {
+            id: 4,
+            title: "Boutique Hotel Design",
+            type: "Hospitality",
+            area: "15,000 sq. ft.",
+            location: "Los Angeles, CA",
+            image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=400"
+        }
+    ];
+
+    const interiorBenefits = [
+        {
+            icon: "✓",
+            title: "Custom Designs",
+            description: "Tailored to your style and preferences"
+        },
+        {
+            icon: "✓",
+            title: "Expert Team",
+            description: "Certified interior designers and architects"
+        },
+        {
+            icon: "✓",
+            title: "Quality Materials",
+            description: "Premium materials and finishes"
+        },
+        {
+            icon: "✓",
+            title: "Timely Delivery",
+            description: "Projects completed on schedule"
+        }
+    ];
+
     return (
         <div className="home-page">
             {/* Hero Section - Full Width */}
@@ -109,7 +173,7 @@ const Home = () => {
                 {/* Background Images with Transition */}
                 <div className="hero-background">
                     <div className="hero-slide active" style={{
-                        backgroundImage: `url('https://talatiandpartners.com/wp-content/uploads/2023/02/1980x870maison-de-week-end-Alibaug-copy-2new.webp')`
+                        backgroundImage: `url('https://talatiandpartners.com/wp-content/uploads/2023/02/1980x870maison-de-weekend-Alibaug-copy-2new.webp')`
                     }}></div>
                     <div className="hero-slide" style={{
                         backgroundImage: `url('https://www.piramalmahalaxmi.com/wp-content/uploads/2023/02/this-luxury-apartment-is-truly-an-urban-oasis-in-mumbai.jpg')`
@@ -170,6 +234,9 @@ const Home = () => {
                                 <span className="btn-text">CONTACT AGENT</span>
                                 <div className="btn-hover-effect"></div>
                             </Link>
+                            <Link to="/interior" className="btn btn-tertiary">
+                                <span className="btn-text">INTERIOR DESIGN</span>
+                            </Link>
                         </div>
 
                         {/* Quick Stats */}
@@ -177,6 +244,10 @@ const Home = () => {
                             <div className="stat">
                                 <span className="stat-number">500+</span>
                                 <span className="stat-label">Properties</span>
+                            </div>
+                            <div className="stat">
+                                <span className="stat-number">200+</span>
+                                <span className="stat-label">Interior Projects</span>
                             </div>
                             <div className="stat">
                                 <span className="stat-number">50+</span>
@@ -206,13 +277,17 @@ const Home = () => {
                         <span className="quick-nav-number">250+</span>
                         <span className="quick-nav-label">OUR PROPERTIES</span>
                     </Link>
+                    <Link to="/interior" className="quick-nav-item">
+                        <span className="quick-nav-number">200+</span>
+                        <span className="quick-nav-label">INTERIOR PROJECTS</span>
+                    </Link>
                     <Link to="/buyers" className="quick-nav-item">
                         <span className="quick-nav-number">1,200+</span>
-                        <span className="quick-nav-label">BUYERS</span>
+                        <span className="quick-nav-label">SATISFIED CLIENTS</span>
                     </Link>
                     <Link to="/sellers" className="quick-nav-item">
                         <span className="quick-nav-number">890+</span>
-                        <span className="quick-nav-label">SELLERS</span>
+                        <span className="quick-nav-label">PARTNERS</span>
                     </Link>
                     <Link to="/property-types" className="quick-nav-item">
                         <span className="quick-nav-number">15+</span>
@@ -220,18 +295,14 @@ const Home = () => {
                     </Link>
                     <Link to="/about" className="quick-nav-item">
                         <span className="quick-nav-number">25+</span>
-                        <span className="quick-nav-label">ABOUT US</span>
+                        <span className="quick-nav-label">DESIGN AWARDS</span>
                     </Link>
-                    <Link to="/media" className="quick-nav-item">
-                        <span className="quick-nav-number">50+</span>
-                        <span className="quick-nav-label">IN THE MEDIA</span>
-                    </Link>
-                    <Link to="/contact" className="quick-nav-item">
-                        <span className="quick-nav-label">CONTACT US</span>
+                    <Link to="/contactagent" className="quick-nav-item">
+                        <span className="quick-nav-label">BOOK CONSULTATION</span>
                     </Link>
                     <div className="quick-nav-brand">
                         <span className="brand-name">DREAMPRO</span>
-                        <span className="brand-tagline">GROUP</span>
+                        <span className="brand-tagline">REAL ESTATE & INTERIOR</span>
                     </div>
                 </div>
             </section>
@@ -251,7 +322,6 @@ const Home = () => {
                             <div key={property.id} className="property-card">
                                 <div className="property-image">
                                     <img src={property.image} alt={property.title} />
-                                    <div className="property-type">{property.type}</div>
                                     <div className="property-overlay">
                                         <Link to={`/property/${property.id}`} className="btn-view-details">
                                             VIEW DETAILS
@@ -260,13 +330,10 @@ const Home = () => {
                                 </div>
                                 <div className="property-content">
                                     <h3 className="property-title">{property.title}</h3>
-                                    <p className="property-price">${property.price.toLocaleString()}</p>
                                     <p className="property-address">{property.address}</p>
-                                    <div className="property-features">
-                                        <span>{property.bedrooms} Beds</span>
-                                        <span>{property.bathrooms} Baths</span>
-                                        <span>{property.sqft} sqft</span>
-                                    </div>
+                                    <Link to="/contactagent" className="property-consult-btn">
+                                        BOOK CONSULTATION
+                                    </Link>
                                 </div>
                             </div>
                         ))}
@@ -276,6 +343,93 @@ const Home = () => {
                         <Link to="/properties" className="btn btn-outline">
                             VIEW ALL PROPERTIES
                         </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* Interior Work Section - Full Width */}
+            <section className="interior-section full-width">
+                <div className="container">
+                    <div className="section-header">
+                        <h2 className="section-title">INTERIOR DESIGN & RENOVATION</h2>
+                        <p className="section-subtitle">
+                            Transform your space with our expert interior design services
+                        </p>
+                    </div>
+
+                    <div className="interior-services-grid">
+                        {interiorServices.map((service, index) => (
+                            <div key={index} className="interior-service-card">
+                                <div className="interior-service-image">
+                                    <img src={service.image} alt={service.title} />
+                                    <div className="service-icon-overlay">
+                                        <span className="service-icon">{service.icon}</span>
+                                    </div>
+                                </div>
+                                <div className="interior-service-content">
+                                    <h3 className="interior-service-title">{service.title}</h3>
+                                    <p className="interior-service-description">{service.description}</p>
+                                    <Link to={service.link} className="interior-service-link">
+                                        {service.linkText} →
+                                    </Link>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="interior-projects-showcase">
+                        <div className="showcase-header">
+                            <h3>RECENT INTERIOR PROJECTS</h3>
+                            <Link to="/interior" className="view-all-link">
+                                View All Projects →
+                            </Link>
+                        </div>
+                        
+                        <div className="projects-grid">
+                            {interiorProjects.map(project => (
+                                <div key={project.id} className="project-card">
+                                    <div className="project-image">
+                                        <img src={project.image} alt={project.title} />
+                                        <div className="project-overlay">
+                                            <span className="project-type">{project.type}</span>
+                                            <span className="project-area">{project.area}</span>
+                                        </div>
+                                    </div>
+                                    <div className="project-content">
+                                        <h4 className="project-title">{project.title}</h4>
+                                        <p className="project-location">{project.location}</p>
+                                        <Link to={`/interior/project/${project.id}`} className="project-link">
+                                            View Project Details
+                                        </Link>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="interior-benefits">
+                        <h3>Why Choose Our Interior Services?</h3>
+                        <div className="benefits-grid">
+                            {interiorBenefits.map((benefit, index) => (
+                                <div key={index} className="benefit-item">
+                                    <span className="benefit-icon">{benefit.icon}</span>
+                                    <div className="benefit-content">
+                                        <h4 className="benefit-title">{benefit.title}</h4>
+                                        <p className="benefit-description">{benefit.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="interior-cta">
+                        <div className="cta-content">
+                            <h3>Ready to Transform Your Space?</h3>
+                            <p>Book a free consultation with our interior design experts</p>
+                            <Link to="/contactagent" className="btn btn-primary">
+                                BOOK FREE CONSULTATION
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -297,6 +451,9 @@ const Home = () => {
                                 <p className="location-count">{location.properties} Properties</p>
                                 <Link to={`/properties?location=${location.name.toLowerCase()}`} className="location-link">
                                     EXPLORE →
+                                </Link>
+                                <Link to="/contactagent" className="location-consult-link">
+                                    BOOK CONSULTATION
                                 </Link>
                             </div>
                         ))}
@@ -320,8 +477,8 @@ const Home = () => {
                                 <div className="service-icon">{service.icon}</div>
                                 <h3 className="service-title">{service.title}</h3>
                                 <p className="service-description">{service.description}</p>
-                                <Link to="/services" className="service-link">
-                                    Learn More →
+                                <Link to={service.link} className="service-link">
+                                    {service.linkText} →
                                 </Link>
                             </div>
                         ))}
@@ -337,12 +494,16 @@ const Home = () => {
                         <span className="stat-label">Properties Sold</span>
                     </div>
                     <div className="stat-item">
+                        <span className="stat-number">200+</span>
+                        <span className="stat-label">Interior Projects</span>
+                    </div>
+                    <div className="stat-item">
                         <span className="stat-number">$2B+</span>
                         <span className="stat-label">In Sales</span>
                     </div>
                     <div className="stat-item">
                         <span className="stat-number">50+</span>
-                        <span className="stat-label">Expert Agents</span>
+                        <span className="stat-label">Expert Team</span>
                     </div>
                     <div className="stat-item">
                         <span className="stat-number">15+</span>
@@ -351,20 +512,39 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* CTA Section - Full Width */}
-            <section className="cta-section full-width">
-                <div className="cta-content container">
-                    <h2 className="cta-title">READY TO FIND YOUR DREAM HOME?</h2>
-                    <p className="cta-subtitle">
-                        Connect with our expert agents and start your journey today
-                    </p>
-                    <div className="cta-buttons">
-                        <Link to="/ContactAgent" className="btn btn-primary">
-                            CONTACT AGENT
-                        </Link>
-                        <Link to="/properties" className="btn btn-secondary">
-                            BROWSE PROPERTIES
-                        </Link>
+            {/* Combined CTA Section - Full Width */}
+            <section className="combined-cta-section full-width">
+                <div className="container">
+                    <div className="cta-grid">
+                        <div className="real-estate-cta">
+                            <h3 className="cta-title">FIND YOUR DREAM HOME</h3>
+                            <p className="cta-subtitle">
+                                Explore our premium property collection
+                            </p>
+                            <div className="cta-buttons">
+                                <Link to="/properties" className="btn btn-primary">
+                                    BROWSE PROPERTIES
+                                </Link>
+                                <Link to="/contactagent" className="btn btn-outline-light">
+                                    BOOK CONSULTATION
+                                </Link>
+                            </div>
+                        </div>
+                        
+                        <div className="interior-cta">
+                            <h3 className="cta-title">TRANSFORM YOUR SPACE</h3>
+                            <p className="cta-subtitle">
+                                Professional interior design services
+                            </p>
+                            <div className="cta-buttons">
+                                <Link to="/interior" className="btn btn-secondary">
+                                    VIEW INTERIOR WORK
+                                </Link>
+                                <Link to="/contactagent" className="btn btn-outline-light">
+                                    BOOK CONSULTATION
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

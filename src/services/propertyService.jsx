@@ -1,11 +1,12 @@
 // src/services/propertyService.js
 import Api from './Api';
 
+
 class PropertiesService {
   // Get all properties with pagination and filters
   async getProperties(params = {}) {
     try {
-      const response = await api.get('/properties', { params });
+      const response = await Api.get('/properties', { params });
       return response.data;
     } catch (error) {
       throw error.response?.data || error;

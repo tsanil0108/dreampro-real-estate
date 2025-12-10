@@ -1,0 +1,216 @@
+/* src/Components/dashboard/DashboardStats.module.css */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+  border-color: #d1d5db;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.iconContainer {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .iconContainer {
+  transform: scale(1.1);
+}
+
+.iconContainer.blue {
+  background: linear-gradient(135deg, #dbeafe, #93c5fd);
+  color: #1e40af;
+}
+
+.iconContainer.green {
+  background: linear-gradient(135deg, #dcfce7, #86efac);
+  color: #166534;
+}
+
+.iconContainer.yellow {
+  background: linear-gradient(135deg, #fef3c7, #fcd34d);
+  color: #92400e;
+}
+
+.iconContainer.purple {
+  background: linear-gradient(135deg, #f3e8ff, #d8b4fe);
+  color: #7c3aed;
+}
+
+.icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.textContent {
+  flex: 1;
+}
+
+.name {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.025em;
+}
+
+.value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  background: linear-gradient(135deg, #111827, #374151);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.description {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+/* Loading States */
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .skeletonGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .skeletonGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.skeletonCard {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.skeletonContent {
+  display: flex;
+  align-items: center;
+}
+
+.skeletonIcon {
+  width: 3rem;
+  height: 3rem;
+  background: #e5e7eb;
+  border-radius: 0.75rem;
+  margin-right: 1rem;
+  animation: pulse 2s infinite;
+}
+
+.skeletonText {
+  flex: 1;
+}
+
+.skeletonName {
+  height: 0.875rem;
+  background: #e5e7eb;
+  border-radius: 0.25rem;
+  width: 60%;
+  margin-bottom: 0.5rem;
+  animation: pulse 2s infinite;
+}
+
+.skeletonValue {
+  height: 1.875rem;
+  background: #e5e7eb;
+  border-radius: 0.25rem;
+  width: 40%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:nth-child(1) { animation: slideIn 0.6s ease 0.1s both; }
+.card:nth-child(2) { animation: slideIn 0.6s ease 0.2s both; }
+.card:nth-child(3) { animation: slideIn 0.6s ease 0.3s both; }
+.card:nth-child(4) { animation: slideIn 0.6s ease 0.4s both; }

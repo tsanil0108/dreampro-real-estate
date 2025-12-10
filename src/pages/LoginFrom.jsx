@@ -18,9 +18,9 @@ const LoginForm = () => {
       
       // Redirect based on user role
       if (authService.isAdmin()) {
-        window.location.href = '/admin/dashboard';
+        window.location.href = '/dashboard';
       } else if (authService.isAgent()) {
-        window.location.href = '/agent/dashboard';
+        window.location.href = '/dashboard';
       } else {
         window.location.href = '/dashboard';
       }

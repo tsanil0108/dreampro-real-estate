@@ -1,5 +1,5 @@
 // src/services/authService.js
-import api from "./Api"; // Fixed typo: apii -> api
+import api from "./Api";
 
 class AuthService {
   constructor() {
@@ -8,42 +8,24 @@ class AuthService {
     this.refreshTokenKey = 'refreshToken';
   }
 
-  // Login user
+  // Login user - UPDATED for your backend response format
   async login(credentials) {
     try {
       const response = await api.post('/auth/login', credentials);
+      console.log('Login response:', response.data); // Debug log
       
-      if (response.data.data?.token) {
-        const { token, user } = response.data.data;
-        this.setAuthData(token, user);
-      } else if (response.data.accessToken) {
-        // Alternative response format
-        const { accessToken, user } = response.data;
-        this.setAuthData(accessToken, user);
-      } else if (response.data.token) {
-        // Another common format
-        const { token, user } = response.data;
-        this.setAuthData(token, user);
-      }
-      
-      return response.data;
-    } catch (error) {
-      throw this.handleError(error);
-    }
-  }
-
-  // Register new user
-  async register(userData) {
-    try {
-      const response = await api.post('/auth/register', userData);
-      
-      // Auto-login after registration if token is returned
-      if (response.data.data?.token || response.data.accessToken || response.data.token) {
-        const token = response.data.data?.token || response.data.accessToken || response.data.token;
-        const user = response.data.data?.user || response.data.user;
+      // Handle your Spring Boot backend response format
+      if (response.data.success && response.data.data) {
+        const { token, user, refreshToken } = response.data.data;
+        
         if (token && user) {
           this.setAuthData(token, user);
+          if (refreshToken) {
+            localStorage.setItem(this.refreshTokenKey, refreshToken);
+          }
         }
+      } else {
+        throw new Error(response.data.message || 'Login failed');
       }
       
       return response.data;
@@ -52,87 +34,130 @@ class AuthService {
     }
   }
 
-  // Get user profile
+  // Register new user - UPDATED for your backend response format
+  async register(userData) {
+    try {
+      const response = await api.post('/register', userData);
+      console.log('Register response:', response.data); // Debug log
+      
+      // Handle registration response
+      if (response.data.success && response.data.data) {
+        const user = response.data.data.user || response.data.data;
+        // Note: Registration might not return token immediately
+        // You can choose to auto-login or redirect to login page
+        return response.data;
+      } else {
+        throw new Error(response.data.message || 'Registration failed');
+      }
+      
+    } catch (error) {
+      throw this.handleError(error);
+    }
+  }
+
+  // Get user profile - UPDATED for your backend response format
   async getProfile() {
     try {
       const response = await api.get('/auth/profile');
       
       // Update user data if profile is more detailed
-      if (response.data.data) {
-        const currentUser = this.getCurrentUser();
-        if (currentUser) {
-          const updatedUser = { ...currentUser, ...response.data.data };
-          this.setUser(updatedUser);
-        }
+      if (response.data.success && response.data.data) {
+        const userData = response.data.data;
+        this.setUser(userData);
+        return response.data;
+      } else {
+        throw new Error(response.data.message || 'Failed to get profile');
       }
       
-      return response.data;
     } catch (error) {
       throw this.handleError(error);
     }
   }
 
-  // Update user profile
+  // Update user profile - UPDATED for your backend response format
   async updateProfile(profileData) {
     try {
       const response = await api.put('/auth/profile', profileData);
       
       // Update user in localStorage
-      if (response.data.data) {
-        const currentUser = this.getCurrentUser();
-        if (currentUser) {
-          const updatedUser = { ...currentUser, ...response.data.data };
-          this.setUser(updatedUser);
-        }
+      if (response.data.success && response.data.data) {
+        const updatedUser = response.data.data;
+        this.setUser(updatedUser);
+        return response.data;
+      } else {
+        throw new Error(response.data.message || 'Profile update failed');
       }
       
-      return response.data;
     } catch (error) {
       throw this.handleError(error);
     }
   }
 
-  // Change password
+  // Change password - UPDATED for your backend response format
   async changePassword(passwordData) {
     try {
       const response = await api.post('/auth/change-password', passwordData);
-      return response.data;
+      
+      if (response.data.success) {
+        return response.data;
+      } else {
+        throw new Error(response.data.message || 'Password change failed');
+      }
+      
     } catch (error) {
       throw this.handleError(error);
     }
   }
 
-  // Forgot password
+  // Forgot password - UPDATED for your backend response format
   async forgotPassword(email) {
     try {
       const response = await api.post('/auth/forgot-password', { email });
-      return response.data;
+      
+      if (response.data.success) {
+        return response.data;
+      } else {
+        throw new Error(response.data.message || 'Password reset failed');
+      }
+      
     } catch (error) {
       throw this.handleError(error);
     }
   }
 
-  // Reset password
+  // Reset password - UPDATED for your backend response format
   async resetPassword(resetData) {
     try {
       const response = await api.post('/auth/reset-password', resetData);
-      return response.data;
+      
+      if (response.data.success) {
+        return response.data;
+      } else {
+        throw new Error(response.data.message || 'Password reset failed');
+      }
+      
     } catch (error) {
       throw this.handleError(error);
     }
   }
 
-  // Verify email
+  // Verify email - UPDATED for your backend response format
   async verifyEmail(token) {
     try {
       const response = await api.post('/auth/verify-email', { token });
-      return response.data;
+      
+      if (response.data.success) {
+        return response.data;
+      } else {
+        throw new Error(response.data.message || 'Email verification failed');
+      }
+      
     } catch (error) {
       throw this.handleError(error);
     }
   }
 
-  // Refresh token (if your API supports it)
+  // Refresh token - UPDATED for your backend response format
   async refreshToken() {
     try {
       const refreshToken = localStorage.getItem(this.refreshTokenKey);
@@ -142,12 +167,19 @@ class AuthService {
 
       const response = await api.post('/auth/refresh-token', { refreshToken });
       
-      if (response.data.accessToken) {
-        this.setToken(response.data.accessToken);
-        return response.data.accessToken;
+      if (response.data.success && response.data.data) {
+        const { token, user, refreshToken: newRefreshToken } = response.data.data;
+        
+        this.setAuthData(token, user);
+        if (newRefreshToken) {
+          localStorage.setItem(this.refreshTokenKey, newRefreshToken);
+        }
+        
+        return token;
+      } else {
+        throw new Error(response.data.message || 'Token refresh failed');
       }
       
-      throw new Error('No access token in response');
     } catch (error) {
       this.logout();
       throw this.handleError(error);
@@ -208,6 +240,35 @@ class AuthService {
     }
   }
 
+  // Get user display name (using your UserDTO structure)
+  getUserDisplayName() {
+    const user = this.getCurrentUser();
+    if (user) {
+      if (user.firstName && user.lastName) {
+        return `${user.firstName} ${user.lastName}`;
+      }
+      return user.email || 'User';
+    }
+    return 'User';
+  }
+
+  // Get user initials (using your UserDTO structure)
+  getUserInitials() {
+    const user = this.getCurrentUser();
+    if (user) {
+      if (user.firstName && user.lastName) {
+        return (user.firstName.charAt(0) + user.lastName.charAt(0)).toUpperCase();
+      }
+      if (user.firstName) {
+        return user.firstName.charAt(0).toUpperCase();
+      }
+      if (user.email) {
+        return user.email.charAt(0).toUpperCase();
+      }
+    }
+    return 'U';
+  }
+
   // Check if user has role
   hasRole(role) {
     const user = this.getCurrentUser();
@@ -217,7 +278,7 @@ class AuthService {
   // Check if user has any of the specified roles
   hasAnyRole(roles) {
     const user = this.getCurrentUser();
-    return roles.includes(user?.role);
+    return user && roles.includes(user.role);
   }
 
   // Check if user is admin
@@ -232,7 +293,7 @@ class AuthService {
 
   // Check if user is regular user
   isUser() {
-    return this.hasRole('USER');
+    return this.hasRole('USER') || (!this.isAdmin() && !this.isAgent());
   }
 
   // Store auth data
@@ -261,21 +322,34 @@ class AuthService {
   handleError(error) {
     console.error('Auth Service Error:', error);
     
-    if (error.response?.data) {
+    // Handle network errors
+    if (error.code === 'NETWORK_ERROR' || error.message?.includes('Network Error')) {
       return {
-        message: error.response.data.message || 'An error occurred',
+        message: 'Cannot connect to server. Please check if the backend is running.',
+        isNetworkError: true,
+        status: 0
+      };
+    }
+    
+    if (error.response?.data) {
+      const backendError = error.response.data;
+      return {
+        message: backendError.message || 'An error occurred',
         status: error.response.status,
-        data: error.response.data
+        data: backendError,
+        isNetworkError: false
       };
     } else if (error.request) {
       return { 
         message: 'No response from server. Please check your connection.',
-        status: 0
+        status: 0,
+        isNetworkError: true
       };
     } else {
       return { 
         message: error.message || 'An unexpected error occurred',
-        status: 500
+        status: 500,
+        isNetworkError: false
       };
     }
   }
@@ -285,6 +359,16 @@ class AuthService {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.refreshTokenKey);
     localStorage.removeItem(this.userKey);
+  }
+
+  // Test backend connection
+  async testConnection() {
+    try {
+      const response = await api.get('/auth/health');
+      return response.data;
+    } catch (error) {
+      throw this.handleError(error);
+    }
   }
 }
 
