@@ -8,7 +8,7 @@ const Footer = () => {
         {/* Logo and Description */}
         <div className="footer-section">
           <div className="footer-logo">
-            <span className="logo-text">DreamPro</span>
+            <span className="logo-text">DreamProspaces</span>
           </div>
           <p className="footer-description">
             Find your perfect home with DreamPro. We connect you with the best properties 

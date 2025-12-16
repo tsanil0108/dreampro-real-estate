@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /* Home.css - Dark/Light Theme */
 
 /* Theme Variables */
@@ -21,14 +22,52 @@
 
 /* Reset and Base Styles */
 html {
+=======
+/* home.css - WITH RENAMED CLASSES */
+
+/* CSS Variables for Consistency */
+:root {
+  /* Dark Theme Colors */
+  --dark-bg: #0a0a0a;
+  --darker-bg: #000000;
+  --dark-card: #1a1a1a;
+  --border-dark: #2a2a2a;
+  --text-light: #ffffff;
+  --text-gray: #b0b0b0;
+  --accent-gold: #D4AF37;
+  --accent-gold-dark: #b8941f;
+  --accent-green: #4CAF50;
+  --accent-blue: #2196F3;
+  --accent-red: #F44336;
+  
+  /* Shadows */
+  --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --shadow-light: 0 5px 15px rgba(212, 175, 55, 0.1);
+  
+  /* Transitions */
+  --transition-fast: all 0.3s ease;
+  --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset and Base Styles */
+* {
+>>>>>>> Stashed changes
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
   width: 100%;
   overflow-x: hidden;
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   scroll-behavior: smooth;
   background-color: var(--dark-bg);
 }
 
+<<<<<<< Updated upstream
 body {
   margin: 0 !important;
   padding: 0;
@@ -47,70 +86,71 @@ body {
   background-color: var(--dark-bg);
 }
 
+=======
+>>>>>>> Stashed changes
 .home-page {
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  overflow-x: hidden;
   width: 100%;
+<<<<<<< Updated upstream
   margin: 0 !important;
   padding: 0;
   background-color: var(--dark-bg);
   color: var(--text-light);
+=======
+  overflow-x: hidden;
+  background-color: var(--dark-bg);
+>>>>>>> Stashed changes
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Container Styles */
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
 }
 
-/* Completely Remove All Horizontal Gaps */
-.container {
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-}
-
-/* Force Full Width Sections - No Exceptions */
-.full-width {
-  width: 100vw !important;
+/* Full Width Sections */
+.home-full-width {
+  width: 100vw;
   position: relative;
-  left: 50% !important;
-  right: 50% !important;
-  margin-left: -50vw !important;
-  margin-right: -50vw !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
-/* Hero Section - Absolute Full Width */
-.hero-section {
+/* Hero Section - Fixed and Enhanced */
+.home-hero-section {
   height: 100vh;
+  min-height: 600px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+<<<<<<< Updated upstream
   width: 100vw !important;
   margin: 0 !important;
   padding: 0 !important;
   left: 0 !important;
   right: 0 !important;
   background-color: var(--dark-bg);
+=======
+  background: var(--dark-bg);
+  margin-top: 5rem;
+>>>>>>> Stashed changes
 }
 
-.hero-background {
+.home-hero-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
+  z-index: 1;
 }
 
-/* Hero Slides - Fixed Positioning */
-.hero-slide {
+.home-hero-slide {
   position: absolute;
   top: 0;
   left: 0;
@@ -120,14 +160,14 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
-.hero-slide.active {
+.home-hero-slide-active {
   opacity: 1;
-  transition: opacity 0.5s ease-in-out;
 }
 
+<<<<<<< Updated upstream
 /* Automatic Slideshow */
 @keyframes slideShow {
   0% {
@@ -143,10 +183,19 @@ body {
     opacity: 0;
   }
   100% {
+=======
+/* Automatic Slideshow Animation */
+@keyframes homeHeroSlideshow {
+  0%, 16.66% {
+    opacity: 1;
+  }
+  20%, 100% {
+>>>>>>> Stashed changes
     opacity: 0;
   }
 }
 
+<<<<<<< Updated upstream
 .hero-slide:nth-child(1) {
   animation: slideShow 24s infinite 0s;
 }
@@ -167,11 +216,22 @@ body {
 }
 
 .hero-overlay {
+=======
+.home-hero-slide:nth-child(1) { animation: homeHeroSlideshow 30s infinite 0s; }
+.home-hero-slide:nth-child(2) { animation: homeHeroSlideshow 30s infinite 5s; }
+.home-hero-slide:nth-child(3) { animation: homeHeroSlideshow 30s infinite 10s; }
+.home-hero-slide:nth-child(4) { animation: homeHeroSlideshow 30s infinite 15s; }
+.home-hero-slide:nth-child(5) { animation: homeHeroSlideshow 30s infinite 20s; }
+.home-hero-slide:nth-child(6) { animation: homeHeroSlideshow 30s infinite 25s; }
+
+.home-hero-overlay {
+>>>>>>> Stashed changes
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+<<<<<<< Updated upstream
   background: linear-gradient(135deg,
     rgba(0, 0, 0, 0.8) 0%,
     rgba(0, 0, 0, 0.6) 50%,
@@ -181,31 +241,62 @@ body {
 /* Hero Content - Centered but Full Width */
 .hero-content {
   position: relative;
+=======
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.95) 0%,
+    rgba(26, 26, 26, 0.8) 50%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+>>>>>>> Stashed changes
   z-index: 2;
-  text-align: center;
-  color: white;
-  width: 100%;
-  margin: 0;
-  padding: 0;
 }
 
-.hero-text-wrapper {
-  max-width: 800px;
+/* Hero Content */
+.home-hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-.hero-badge {
+.home-hero-text-wrapper {
+  animation: homeFadeInUp 1s ease-out;
+}
+
+@keyframes homeFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-hero-badge {
   display: inline-block;
+<<<<<<< Updated upstream
   padding: 8px 20px;
   background: rgba(200, 169, 126, 0.1);
   border: 1px solid var(--accent-gold);
   border-radius: 25px;
+=======
+  padding: 12px 30px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 2px solid var(--accent-gold);
+  border-radius: 50px;
+>>>>>>> Stashed changes
   margin-bottom: 30px;
   backdrop-filter: blur(10px);
-  animation: fadeInUp 0.8s ease-out 0.2s both;
+  animation: homeFadeInUp 0.8s ease-out 0.2s both;
 }
 
+<<<<<<< Updated upstream
 .hero-badge span {
   font-size: 0.8rem;
   letter-spacing: 2px;
@@ -312,22 +403,70 @@ body {
   background: var(--accent-gold);
   color: var(--dark-bg);
   transform: translateY(-2px);
+=======
+.home-hero-badge span {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
 }
 
-.hero-buttons {
+.home-hero-title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #fff 0%, var(--accent-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: homeFadeInUp 1s ease-out 0.4s both;
+}
+
+.home-hero-title .home-highlight {
+  display: block;
+  margin-top: 10px;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.home-hero-subtitle {
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: homeFadeInUp 1s ease-out 0.6s both;
+>>>>>>> Stashed changes
+}
+
+/* Buttons */
+.home-hero-buttons {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   justify-content: center;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
+  animation: homeFadeInUp 1s ease-out 0.8s both;
   flex-wrap: wrap;
+<<<<<<< Updated upstream
   animation: fadeInUp 1s ease-out 0.9s both;
   flex-direction: column;
-  align-items: center;
+=======
 }
 
-.hero-stats {
-  display: flex;
+.home-btn {
+  display: inline-flex;
+>>>>>>> Stashed changes
+  align-items: center;
   justify-content: center;
+<<<<<<< Updated upstream
   gap: 30px;
   flex-wrap: wrap;
   animation: fadeInUp 0.8s ease-out 1s both;
@@ -366,20 +505,131 @@ body {
   margin-right: -50vw !important;
   border-top: 1px solid var(--border-dark);
   border-bottom: 1px solid var(--border-dark);
+=======
+  padding: 16px 32px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: var(--transition-smooth);
+  border: 2px solid transparent;
+  min-width: 200px;
+  position: relative;
+  overflow: hidden;
+>>>>>>> Stashed changes
 }
 
-.quick-nav-grid {
+.home-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.home-btn:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.home-btn-primary {
+  background: var(--accent-gold);
+  color: var(--dark-bg);
+}
+
+.home-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+  color: var(--dark-bg);
+}
+
+.home-btn-secondary {
+  background: transparent;
+  color: var(--text-light);
+  border-color: var(--accent-gold);
+}
+
+.home-btn-secondary:hover {
+  background: var(--accent-gold);
+  color: var(--dark-bg);
+  transform: translateY(-3px);
+}
+
+.home-btn-tertiary {
+  background: transparent;
+  color: var(--text-light);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.home-btn-tertiary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+.home-btn-outline {
+  padding: 16px 40px;
+  background: transparent;
+  color: var(--accent-gold);
+  border: 2px solid var(--accent-gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: var(--transition-smooth);
+}
+
+.home-btn-outline:hover {
+  background: var(--accent-gold);
+  color: var(--dark-bg);
+  transform: translateY(-3px);
+}
+
+.home-btn-outline-light {
+  padding: 12px 30px;
+  background: transparent;
+  color: var(--text-light);
+  border: 2px solid var(--accent-gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: var(--transition-smooth);
+}
+
+.home-btn-outline-light:hover {
+  background: var(--accent-gold);
+  color: var(--dark-bg);
+  transform: translateY(-3px);
+}
+
+/* Hero Stats */
+.home-hero-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+<<<<<<< Updated upstream
   gap: 15px;
   width: 100%;
   max-width: 1400px;
+=======
+  gap: 30px;
+  max-width: 800px;
+>>>>>>> Stashed changes
   margin: 0 auto;
-  padding: 0 15px;
+  animation: homeFadeInUp 1s ease-out 1s both;
 }
 
-.quick-nav-item {
+.home-stat {
   text-align: center;
+<<<<<<< Updated upstream
   padding: 20px 15px;
   background: var(--dark-card);
   text-decoration: none;
@@ -402,18 +652,49 @@ body {
   font-weight: 300;
   color: var(--accent-gold);
   margin-bottom: 5px;
+=======
+  padding: 20px;
 }
 
-.quick-nav-label {
-  font-size: 0.8rem;
+.home-stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 8px;
+  font-family: 'Georgia', serif;
+>>>>>>> Stashed changes
+}
+
+.home-stat-label {
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  color: var(--text-gray);
   font-weight: 500;
   color: var(--text-light);
 }
 
-.quick-nav-brand {
+/* Quick Navigation */
+.home-quick-nav-section {
+  background: var(--darker-bg);
+  padding: 30px 0;
+  border-top: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.home-quick-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.home-quick-nav-item {
   text-align: center;
+<<<<<<< Updated upstream
   padding: 20px 15px;
   background: var(--accent-gold);
   color: var(--dark-bg);
@@ -421,20 +702,107 @@ body {
   flex-direction: column;
   justify-content: center;
   border-radius: 8px;
+=======
+  padding: 25px 20px;
+  background: var(--dark-card);
+  border: 1px solid var(--border-dark);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+>>>>>>> Stashed changes
 }
 
-.brand-name {
-  font-size: 1.3rem;
+.home-quick-nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.home-quick-nav-item:hover::before {
+  left: 100%;
+}
+
+.home-quick-nav-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.home-quick-nav-number {
+  display: block;
+  font-size: 2rem;
   font-weight: 700;
+<<<<<<< Updated upstream
   letter-spacing: 2px;
   margin-bottom: 5px;
   color: var(--dark-bg);
+=======
+  color: var(--accent-gold);
+  margin-bottom: 8px;
+>>>>>>> Stashed changes
 }
 
-.brand-tagline {
-  font-size: 0.7rem;
+.home-quick-nav-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.home-quick-nav-brand {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(135deg, var(--dark-card) 0%, #222 100%);
+  border: 1px solid var(--border-dark);
+  border-radius: 12px;
+}
+
+.home-brand-name {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.home-brand-tagline {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-gray);
+  font-weight: 500;
+}
+
+/* Section Styles */
+.home-section {
+  padding: 80px 0;
+  background: var(--dark-bg);
+}
+
+.home-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 0 20px;
+}
+
+.home-section-title {
+  font-size: 2.5rem;
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 3px;
+<<<<<<< Updated upstream
   opacity: 0.8;
   color: var(--dark-bg);
 }
@@ -466,20 +834,51 @@ body {
   font-size: 1rem;
   color: var(--text-gray);
   font-weight: 300;
-  max-width: 600px;
-  margin: 0 auto;
+=======
+  margin-bottom: 20px;
+  color: var(--text-light);
+  position: relative;
+  display: inline-block;
 }
 
+.home-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--accent-gold);
+}
+
+.home-section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-gray);
+>>>>>>> Stashed changes
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+<<<<<<< Updated upstream
 /* Properties Section */
 .properties-section {
   background: var(--dark-bg);
   width: 100%;
   margin: 0;
   padding: 50px 0;
+=======
+.home-section-footer {
+  text-align: center;
+  margin-top: 50px;
+>>>>>>> Stashed changes
 }
 
-.properties-grid {
+/* Properties Grid */
+.home-properties-grid {
   display: grid;
+<<<<<<< Updated upstream
   grid-template-columns: 1fr;
   gap: 20px;
   max-width: 1200px;
@@ -494,39 +893,63 @@ body {
   box-shadow: var(--shadow-dark);
   transition: all 0.3s ease;
   position: relative;
+=======
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.home-property-card {
+  background: var(--dark-card);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+>>>>>>> Stashed changes
   border: 1px solid var(--border-dark);
 }
 
-.property-card:hover {
+.home-property-card:hover {
   transform: translateY(-10px);
+<<<<<<< Updated upstream
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+=======
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+>>>>>>> Stashed changes
   border-color: var(--accent-gold);
 }
 
-.property-image {
+.home-property-image {
   position: relative;
+<<<<<<< Updated upstream
   height: 200px;
+=======
+  height: 250px;
+>>>>>>> Stashed changes
   overflow: hidden;
 }
 
-.property-image img {
+.home-property-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
-.property-card:hover .property-image img {
+.home-property-card:hover .home-property-image img {
   transform: scale(1.1);
 }
 
+<<<<<<< Updated upstream
 .property-overlay {
+=======
+.home-property-overlay {
+>>>>>>> Stashed changes
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(200, 169, 126, 0.9);
+  background: rgba(212, 175, 55, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -534,10 +957,11 @@ body {
   transition: opacity 0.3s ease;
 }
 
-.property-card:hover .property-overlay {
+.home-property-card:hover .home-property-overlay {
   opacity: 1;
 }
 
+<<<<<<< Updated upstream
 .btn-view-details {
   color: var(--dark-bg);
   text-decoration: none;
@@ -555,19 +979,44 @@ body {
   background: var(--dark-bg);
   color: var(--accent-gold);
   border-color: var(--accent-gold);
+=======
+.home-btn-view-details {
+  padding: 12px 30px;
+  background: var(--dark-bg);
+  color: var(--accent-gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: var(--transition-fast);
 }
 
-.property-content {
-  padding: 20px;
+.home-btn-view-details:hover {
+  background: var(--accent-gold);
+  color: var(--dark-bg);
+>>>>>>> Stashed changes
 }
 
+.home-property-content {
+  padding: 25px;
+}
+
+<<<<<<< Updated upstream
 .property-title {
   font-size: 1.2rem;
   font-weight: 500;
+=======
+.home-property-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+>>>>>>> Stashed changes
   margin-bottom: 10px;
   color: var(--text-light);
 }
 
+<<<<<<< Updated upstream
 .property-address {
   color: var(--text-gray);
   margin-bottom: 15px;
@@ -620,56 +1069,150 @@ body {
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+=======
+.home-property-address {
+  color: var(--text-gray);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.home-property-consult-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--accent-gold);
+  color: var(--dark-bg);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 50px;
+  transition: var(--transition-fast);
+}
+
+.home-property-consult-btn:hover {
+  background: var(--accent-gold-dark);
+  transform: translateY(-2px);
+}
+
+/* Interior Section */
+.home-interior-section {
+  background: var(--darker-bg);
+  padding: 80px 0;
+}
+
+.home-interior-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.home-interior-service-card {
+  background: var(--dark-card);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+>>>>>>> Stashed changes
   border: 1px solid var(--border-dark);
 }
 
-.location-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
+.home-interior-service-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.home-interior-service-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.home-interior-service-image img {
   width: 100%;
+<<<<<<< Updated upstream
   height: 4px;
   background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
   transition: left 0.4s ease;
+=======
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+>>>>>>> Stashed changes
 }
 
-.location-card:hover::before {
-  left: 0;
+.home-interior-service-card:hover .home-interior-service-image img {
+  transform: scale(1.1);
 }
 
+<<<<<<< Updated upstream
 .location-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   border-color: var(--accent-gold);
+=======
+.home-service-icon-overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--accent-gold);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+>>>>>>> Stashed changes
 }
 
-.location-name {
+.home-interior-service-content {
+  padding: 25px;
+}
+
+.home-interior-service-title {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 15px;
   color: var(--text-light);
+<<<<<<< Updated upstream
   letter-spacing: 1px;
 }
 
 .location-count {
   color: var(--accent-gold);
   font-size: 1.1rem;
-  margin-bottom: 20px;
-  font-weight: 500;
+=======
 }
 
+.home-interior-service-description {
+  color: var(--text-gray);
+>>>>>>> Stashed changes
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+<<<<<<< Updated upstream
 .location-link {
+=======
+.home-interior-service-link {
+>>>>>>> Stashed changes
   color: var(--accent-gold);
   text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9rem;
+  transition: gap 0.3s ease;
 }
 
+<<<<<<< Updated upstream
 .location-link:hover {
   color: var(--text-light);
   gap: 12px;
@@ -701,10 +1244,49 @@ body {
   width: 100%;
   margin: 0;
   padding: 50px 0;
+=======
+.home-interior-service-link:hover {
+  gap: 12px;
 }
 
-.services-grid {
+/* Projects Showcase */
+.home-interior-projects-showcase {
+  margin-bottom: 60px;
+>>>>>>> Stashed changes
+}
+
+.home-showcase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.home-showcase-header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.home-view-all-link {
+  color: var(--accent-gold);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.3s ease;
+}
+
+.home-view-all-link:hover {
+  gap: 12px;
+}
+
+.home-projects-grid {
   display: grid;
+<<<<<<< Updated upstream
   grid-template-columns: 1fr;
   gap: 25px;
   max-width: 1200px;
@@ -721,37 +1303,335 @@ body {
   transition: all 0.4s ease;
   position: relative;
   border: 1px solid var(--border-dark);
+=======
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
 }
 
-.service-card::before {
+.home-project-card {
+  background: var(--dark-card);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  border: 1px solid var(--border-dark);
+}
+
+.home-project-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.home-project-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+>>>>>>> Stashed changes
+}
+
+.home-project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.home-project-card:hover .home-project-image img {
+  transform: scale(1.1);
+}
+
+.home-project-overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.home-project-type {
+  background: var(--accent-gold);
+  color: var(--dark-bg);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.home-project-area {
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--text-light);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.home-project-content {
+  padding: 25px;
+}
+
+.home-project-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-light);
+}
+
+.home-project-location {
+  color: var(--text-gray);
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.home-project-link {
+  color: var(--accent-gold);
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.3s ease;
+}
+
+.home-project-link:hover {
+  gap: 12px;
+}
+
+/* Interior Benefits */
+.home-interior-benefits {
+  background: var(--dark-card);
+  border-radius: 15px;
+  padding: 40px;
+  margin-bottom: 60px;
+  border: 1px solid var(--border-dark);
+}
+
+.home-interior-benefits h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.home-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.home-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.home-benefit-icon {
+  background: var(--accent-gold);
+  color: var(--dark-bg);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.home-benefit-content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-light);
+}
+
+.home-benefit-content p {
+  color: var(--text-gray);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Interior CTA */
+.home-interior-cta {
+  background: linear-gradient(135deg, var(--dark-card) 0%, #222 100%);
+  border-radius: 15px;
+  padding: 60px 40px;
+  text-align: center;
+  border: 1px solid var(--border-dark);
+}
+
+.home-interior-cta h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+
+.home-interior-cta p {
+  color: var(--text-gray);
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Locations Grid */
+.home-locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.home-location-card {
+  background: var(--dark-card);
+  border-radius: 15px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: var(--transition-smooth);
+  border: 1px solid var(--border-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-location-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-gold), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.home-location-card:hover::before {
+  transform: translateX(0);
+}
+
+.home-location-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.home-location-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.home-location-count {
+  color: var(--accent-gold);
+  font-size: 1rem;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.home-location-link {
+  display: inline-block;
+  color: var(--accent-gold);
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  margin-bottom: 15px;
+  transition: var(--transition-fast);
+}
+
+.home-location-link:hover {
+  transform: translateX(5px);
+}
+
+.home-location-consult-link {
+  display: block;
+  padding: 12px 25px;
+  background: transparent;
+  color: var(--text-light);
+  border: 2px solid var(--border-dark);
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: var(--transition-fast);
+}
+
+.home-location-consult-link:hover {
+  background: var(--accent-gold);
+  color: var(--dark-bg);
+  border-color: var(--accent-gold);
+}
+
+/* Services Grid */
+.home-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.home-service-card {
+  background: var(--dark-card);
+  border-radius: 15px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: var(--transition-smooth);
+  border: 1px solid var(--border-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-service-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+<<<<<<< Updated upstream
   background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+=======
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+>>>>>>> Stashed changes
   opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 1;
-  border-radius: 12px;
+  transition: opacity 0.3s ease;
 }
 
-.service-card:hover::before {
+.home-service-card:hover::before {
   opacity: 1;
 }
 
+<<<<<<< Updated upstream
 .service-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   border-color: var(--accent-gold);
+=======
+.home-service-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+>>>>>>> Stashed changes
 }
 
-.service-card>* {
-  position: relative;
-  z-index: 2;
+.home-service-icon {
+  font-size: 3rem;
+  margin-bottom: 25px;
+  color: var(--accent-gold);
 }
 
+<<<<<<< Updated upstream
 .service-card:hover .service-icon,
 .service-card:hover .service-title,
 .service-card:hover .service-description,
@@ -773,8 +1653,14 @@ body {
 
 .service-title {
   font-size: 1.2rem;
+=======
+.home-service-title {
+  font-size: 1.3rem;
+>>>>>>> Stashed changes
   font-weight: 600;
+  color: var(--text-light);
   margin-bottom: 15px;
+<<<<<<< Updated upstream
   color: var(--text-light);
   transition: color 0.3s ease;
   letter-spacing: 0.5px;
@@ -789,16 +1675,30 @@ body {
 }
 
 .service-link {
+=======
+}
+
+.home-service-description {
+  color: var(--text-gray);
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.home-service-link {
+>>>>>>> Stashed changes
   color: var(--accent-gold);
   text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9rem;
+  transition: gap 0.3s ease;
 }
 
+<<<<<<< Updated upstream
 .service-card:hover .service-link {
   color: var(--dark-bg);
 }
@@ -820,25 +1720,37 @@ body {
   right: 50% !important;
   margin-left: -50vw !important;
   margin-right: -50vw !important;
+=======
+.home-service-link:hover {
+  gap: 12px;
+}
+
+/* Stats Section */
+.home-stats-section {
+  background: var(--darker-bg);
+  padding: 80px 0;
+>>>>>>> Stashed changes
   border-top: 1px solid var(--border-dark);
   border-bottom: 1px solid var(--border-dark);
 }
 
-.stats-grid {
+.home-stats-grid {
   display: grid;
+<<<<<<< Updated upstream
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
+=======
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 40px;
+>>>>>>> Stashed changes
   text-align: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
 }
 
-.stat-item {
-  padding: 15px;
+.home-stat-item {
+  padding: 20px;
 }
 
+<<<<<<< Updated upstream
 .stat-number {
   display: block;
   font-size: 2.5rem;
@@ -903,17 +1815,54 @@ body {
 
 .cta-subtitle {
   font-size: 1rem;
+=======
+/* Combined CTA */
+.home-combined-cta-section {
+  background: var(--darker-bg);
+  padding: 80px 0;
+}
+
+.home-cta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.home-real-estate-cta,
+.home-interior-cta {
+  background: var(--dark-card);
+  border-radius: 15px;
+  padding: 50px 40px;
+  text-align: center;
+  border: 1px solid var(--border-dark);
+  transition: var(--transition-smooth);
+}
+
+.home-real-estate-cta:hover,
+.home-interior-cta:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.home-cta-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+
+.home-cta-subtitle {
+>>>>>>> Stashed changes
   color: var(--text-gray);
   margin-bottom: 30px;
   line-height: 1.6;
 }
 
-.cta-buttons {
+.home-cta-buttons {
   display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
   flex-direction: column;
+<<<<<<< Updated upstream
   align-items: center;
 }
 
@@ -1074,27 +2023,47 @@ body {
   }
 }
 
+=======
+  gap: 15px;
+  align-items: center;
+}
+
+>>>>>>> Stashed changes
 /* Scroll Indicator */
-.hero-scroll-indicator {
+.home-hero-scroll-indicator {
   position: absolute;
-  bottom: 20px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
+<<<<<<< Updated upstream
   color: var(--text-light);
+=======
+>>>>>>> Stashed changes
   text-align: center;
-  z-index: 2;
-  animation: fadeIn 1s ease-out 1.5s both;
+  z-index: 3;
+  animation: homeFadeIn 2s ease-out 1.5s both;
 }
 
-.hero-scroll-indicator span {
-  font-size: 0.7rem;
+@keyframes homeFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.home-hero-scroll-indicator span {
+  font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 15px;
   display: block;
-  margin-bottom: 10px;
+  font-weight: 500;
 }
 
+<<<<<<< Updated upstream
 .scroll-arrow {
   width: 20px;
   height: 35px;
@@ -1109,18 +2078,34 @@ body {
   height: 8px;
   background: var(--accent-gold);
   border-radius: 1px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scroll 2s infinite;
+=======
+.home-scroll-arrow {
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  border-radius: 20px;
+  margin: 0 auto;
+  position: relative;
 }
 
-@keyframes scroll {
-  0% {
+.home-scroll-arrow-inner {
+>>>>>>> Stashed changes
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 10px;
+  background: var(--accent-gold);
+  border-radius: 1px;
+  animation: homeScrollBounce 2s infinite;
+}
+
+@keyframes homeScrollBounce {
+  0%, 20%, 50%, 80%, 100% {
     transform: translateX(-50%) translateY(0);
-    opacity: 0;
   }
+<<<<<<< Updated upstream
   50% {
     opacity: 1;
   }
@@ -1170,6 +2155,49 @@ body {
   
   .cta-buttons {
     flex-direction: row;
+=======
+  40% {
+    transform: translateX(-50%) translateY(10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(5px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .home-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .home-hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .home-quick-nav-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .home-showcase-header {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .home-cta-buttons {
+    flex-direction: column;
+  }
+  
+  .home-cta-grid {
+    grid-template-columns: 1fr;
+>>>>>>> Stashed changes
   }
   
   .cta-grid {
@@ -1177,6 +2205,7 @@ body {
   }
 }
 
+<<<<<<< Updated upstream
 /* Medium screens (768px and up) */
 @media screen and (min-width: 768px) {
   .hero-title {
@@ -1310,3 +2339,55 @@ body {
     padding: 60px 40px;
   }
 }
+=======
+@media (max-width: 480px) {
+  .home-hero-title {
+    font-size: 2rem;
+  }
+  
+  .home-hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .home-hero-badge {
+    padding: 10px 20px;
+  }
+  
+  .home-hero-badge span {
+    font-size: 12px;
+  }
+  
+  .home-stat-number {
+    font-size: 2rem;
+  }
+  
+  .home-section-title {
+    font-size: 1.8rem;
+  }
+  
+  .home-properties-grid,
+  .home-interior-services-grid,
+  .home-projects-grid,
+  .home-benefits-grid,
+  .home-locations-grid,
+  .home-services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .home-hero-section,
+  .home-quick-nav-section,
+  .home-hero-scroll-indicator {
+    display: none;
+  }
+  
+  .home-section {
+    padding: 30px 0;
+    break-inside: avoid;
+  }
+}
+
+
+>>>>>>> Stashed changes

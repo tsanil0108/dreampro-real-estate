@@ -4,10 +4,21 @@ import CategoryCard from './CategoryCard';
 import GalleryItem from './GalleryItem';
 import FurnitureWork from './FurnitureWork';
 import ContractCarpainter from './ContractCarpainter';
+<<<<<<< Updated upstream
 import ProjectComplete from './ProjectComplete';
 import { FaPhone, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaStar, FaCalendarAlt, FaImages, FaUserTie, FaClock, FaMoneyBill, FaCheckCircle, FaTools, FaArrowRight, FaHome, FaCouch, FaChair, FaTable, FaDoorOpen, FaShapes } from 'react-icons/fa';
 import './Interior.css';
 import './GalleryItem.css'; 
+=======
+
+
+import { FaPhone, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaStar, FaCalendarAlt, FaImages, FaUserTie, FaClock, FaMoneyBill, FaCheckCircle, FaTools, FaArrowRight, FaHome, FaCouch, FaChair, FaTable, FaDoorOpen, FaShapes } from 'react-icons/fa';
+import './InteriorPage.css';
+import './GalleryItem.css'; 
+import './FurnitureWork.css'; 
+import './ContractCarpainter.css';
+import './CategoryCard.css'
+>>>>>>> Stashed changes
 
 const InteriorPage = () => {
     const navigate = useNavigate();
@@ -17,6 +28,17 @@ const InteriorPage = () => {
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [activeWorkType, setActiveWorkType] = useState('wardrobe');
     const [projectGalleryIndex, setProjectGalleryIndex] = useState(0);
+<<<<<<< Updated upstream
+=======
+    
+    // Contact Information
+    const contactInfo = {
+        phone: '7304603314',
+        whatsapp: '7304603314',
+        email: 'dreamprospace108@gmail.com',
+        formattedPhone: '+91 73046 03314'
+    };
+>>>>>>> Stashed changes
     
     // Different images with titles for slideshow
     const heroImages = [
@@ -135,8 +157,12 @@ const InteriorPage = () => {
             projectCount: 45,
             color: '#4285F4',
             icon: '👔',
+<<<<<<< Updated upstream
             features: ['Sliding doors', 'Mirror finish', 'LED lighting', 'Drawer systems'],
             contractors: [1, 2, 4]
+=======
+            features: ['Sliding doors', 'Mirror finish', 'LED lighting', 'Drawer systems']
+>>>>>>> Stashed changes
         },
         {
             id: 'bed',
@@ -146,8 +172,12 @@ const InteriorPage = () => {
             projectCount: 32,
             color: '#34A853',
             icon: '🛏️',
+<<<<<<< Updated upstream
             features: ['Storage beds', 'Canopy designs', 'Upholstered', 'LED headboards'],
             contractors: [1, 3]
+=======
+            features: ['Storage beds', 'Canopy designs', 'Upholstered', 'LED headboards']
+>>>>>>> Stashed changes
         },
         {
             id: 'kitchen',
@@ -157,8 +187,12 @@ const InteriorPage = () => {
             projectCount: 38,
             color: '#FBBC05',
             icon: '🍳',
+<<<<<<< Updated upstream
             features: ['Soft-close drawers', 'Pull-out systems', 'Quartz countertops', 'Backlighting'],
             contractors: [2, 3, 5]
+=======
+            features: ['Soft-close drawers', 'Pull-out systems', 'Quartz countertops', 'Backlighting']
+>>>>>>> Stashed changes
         },
         {
             id: 'tv-unit',
@@ -168,6 +202,7 @@ const InteriorPage = () => {
             projectCount: 28,
             color: '#EA4335',
             icon: '📺',
+<<<<<<< Updated upstream
             features: ['Wall paneling', 'Cable management', 'Display shelves', 'Ambient lighting'],
             contractors: [1, 4, 6]
         },
@@ -258,6 +293,9 @@ const InteriorPage = () => {
             icon: '🧸',
             features: ['Theme-based designs', 'Safety features', 'Growth adaptable', 'Colorful finishes'],
             contractors: [3, 5]
+=======
+            features: ['Wall paneling', 'Cable management', 'Display shelves', 'Ambient lighting']
+>>>>>>> Stashed changes
         }
     ];
 
@@ -269,13 +307,20 @@ const InteriorPage = () => {
             title: 'Walk-in Wardrobe Suite',
             category: 'wardrobe',
             image: 'https://i.pinimg.com/564x/f4/5c/33/f45c337d15209377170a19b9b2b03ac8.jpg',
+<<<<<<< Updated upstream
             description: 'Luxurious walk-in wardrobe with full-length mirrors, LED lighting, and custom drawer systems. Perfect for organizing your clothing collection with premium finishes and smart storage solutions.',
+=======
+            description: 'Luxurious walk-in wardrobe with full-length mirrors, LED lighting, and custom drawer systems.',
+>>>>>>> Stashed changes
             tags: ['Walk-in', 'Mirror Finish', 'LED Lighting', 'Custom Storage'],
             duration: '3 weeks',
             features: ['Pull-out tie racks', 'Jewelry drawers', 'Shoe carousels', 'Steam iron cabinet'],
             materials: ['Premium Plywood', 'Glass Doors', 'Aluminum Handles', 'LED Strips'],
             area: '45 sq ft',
+<<<<<<< Updated upstream
             contractorMatch: [1, 2],
+=======
+>>>>>>> Stashed changes
             complexity: 'High',
             estimatedCost: '₹1,50,000 - ₹2,00,000'
         },
@@ -284,12 +329,17 @@ const InteriorPage = () => {
             title: 'Sliding Door Wardrobe',
             category: 'wardrobe',
             image: 'https://i.pinimg.com/564x/c4/91/48/c49148dbbf42af433d744f1605d7f345.jpg',
+<<<<<<< Updated upstream
             description: 'Modern sliding door wardrobe with frosted glass and smart compartmentalization. Space-saving design with smooth sliding mechanisms and elegant finishes.',
+=======
+            description: 'Modern sliding door wardrobe with frosted glass and smart compartmentalization.',
+>>>>>>> Stashed changes
             tags: ['Sliding Doors', 'Frosted Glass', 'Smart Compartments'],
             duration: '2 weeks',
             features: ['Full-height doors', 'Mirror panels', 'Hanging rods', 'Shelf organizers'],
             materials: ['Engineered Wood', 'Frosted Glass', 'Soft-close Slides'],
             area: '30 sq ft',
+<<<<<<< Updated upstream
             contractorMatch: [1, 4],
             complexity: 'Medium',
             estimatedCost: '₹80,000 - ₹1,20,000'
@@ -535,6 +585,36 @@ const InteriorPage = () => {
             hourlyRate: "₹400-650/hr",
             minProject: "₹35,000",
             certifications: ["Modern Furniture Design", "Space Planning"]
+=======
+            complexity: 'Medium',
+            estimatedCost: '₹80,000 - ₹1,20,000'
+        }
+    ];
+
+    // Enhanced Contractor Data
+    const contractors = [
+        {
+            id: 1,
+            name: "Dream Pro Space Team",
+            specialization: "Interior Design & Construction",
+            experience: "10+ years",
+            rating: 4.9,
+            location: "Mumbai",
+            phone: contactInfo.phone,
+            whatsapp: contactInfo.whatsapp,
+            email: contactInfo.email,
+            image: "https://randomuser.me/api/portraits/men/32.jpg",
+            skills: ["Wardrobe Making", "Kitchen Design", "Complete Interior", "Custom Furniture"],
+            availability: "Available 24/7",
+            projectsCompleted: 500,
+            verified: true,
+            languages: ["Hindi", "English", "Marathi"],
+            expertise: ["Complete Interior", "Custom Furniture", "Space Planning"],
+            responseTime: "Immediate Response",
+            hourlyRate: "Consultation Based",
+            minProject: "Flexible",
+            certifications: ["Interior Design Certified", "Safety Training"]
+>>>>>>> Stashed changes
         }
     ];
 
@@ -542,12 +622,61 @@ const InteriorPage = () => {
         ? galleryItems
         : galleryItems.filter(item => item.category === activeCategory);
 
+<<<<<<< Updated upstream
     // Contact Contractor Functions
     const callContractor = (phone) => {
         window.location.href = `tel:${phone}`;
     };
 
     const whatsappContractor = (contractor, project = null, category = null) => {
+=======
+    // UNIVERSAL CONTACT FUNCTIONS
+    const makePhoneCall = (phoneNumber = contactInfo.phone) => {
+        const cleanNumber = phoneNumber.toString().replace(/[-\s]/g, '');
+        const fullNumber = `+91${cleanNumber}`;
+        
+        // Check if mobile device
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            window.location.href = `tel:${fullNumber}`;
+        } else {
+            // For desktop, show alert with number
+            const confirmed = window.confirm(`Call: ${contactInfo.formattedPhone}\n\nClick OK to attempt call through browser or copy the number to dial from your phone.`);
+            if (confirmed) {
+                window.location.href = `tel:${fullNumber}`;
+            }
+        }
+    };
+
+    const sendWhatsApp = (message = '', phoneNumber = contactInfo.whatsapp) => {
+        const cleanNumber = phoneNumber.toString().replace(/[+\s-]/g, '');
+        const defaultMessage = `Hello! I'm interested in your interior design services. Could you please share more details?`;
+        const finalMessage = message || defaultMessage;
+        const encodedMessage = encodeURIComponent(finalMessage);
+        const whatsappUrl = `https://wa.me/91${cleanNumber}?text=${encodedMessage}`;
+        
+        window.open(whatsappUrl, '_blank');
+    };
+
+    const sendEmail = (subject = '', body = '', emailAddress = contactInfo.email) => {
+        const defaultSubject = 'Inquiry About Interior Design Services';
+        const defaultBody = `Dear Dream Pro Space Team,\n\nI am interested in your interior design services. Please share:\n1. Portfolio and previous work\n2. Service packages and pricing\n3. Consultation availability\n4. Timeline for projects\n\nThank you,\n[Your Name]`;
+        
+        const finalSubject = subject || defaultSubject;
+        const finalBody = body || defaultBody;
+        const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(finalBody)}`;
+        
+        window.location.href = mailtoUrl;
+    };
+
+    // Updated contractor contact functions
+    const callContractor = (contractor = contractors[0]) => {
+        makePhoneCall(contractor.phone);
+    };
+
+    const whatsappContractor = (contractor = contractors[0], project = null, category = null) => {
+>>>>>>> Stashed changes
         let message = `Hello ${contractor.name}, I'm interested in your ${contractor.specialization} services`;
         
         if (project) {
@@ -561,10 +690,17 @@ const InteriorPage = () => {
         
         message += `Please provide more details about availability and pricing.`;
         
+<<<<<<< Updated upstream
         window.open(`https://wa.me/${contractor.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`, '_blank');
     };
 
     const emailContractor = (contractor, project = null, category = null) => {
+=======
+        sendWhatsApp(message, contractor.whatsapp);
+    };
+
+    const emailContractor = (contractor = contractors[0], project = null, category = null) => {
+>>>>>>> Stashed changes
         let subject = `Inquiry: ${contractor.specialization} Services`;
         let body = `Dear ${contractor.name},\n\nI am interested in your ${contractor.specialization} services`;
         
@@ -583,6 +719,7 @@ const InteriorPage = () => {
         
         body += `Please share:\n1. Availability for site visit\n2. Portfolio of similar projects\n3. Rate card and payment terms\n4. Timeline for completion\n\nLooking forward to your response.\n\nBest regards,\n[Your Name]`;
         
+<<<<<<< Updated upstream
         window.location.href = `mailto:${contractor.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     };
 
@@ -592,10 +729,21 @@ const InteriorPage = () => {
             state: { 
                 project: project,
                 contractors: getMatchedContractors(project)
+=======
+        sendEmail(subject, body, contractor.email);
+    };
+
+    const handleProjectClick = (project) => {
+        navigate('/project-complete', { 
+            state: { 
+                project: project,
+                contractors: contractors
+>>>>>>> Stashed changes
             } 
         });
     };
 
+<<<<<<< Updated upstream
     const handleCategoryClick = (category) => {
         setActiveCategory(category.id);
         // Navigate to category projects view
@@ -630,6 +778,34 @@ const InteriorPage = () => {
         if (contractorSection) {
             contractorSection.scrollIntoView({ behavior: 'smooth' });
         }
+=======
+    // Updated: Categories navigate to WorkCategories page
+    const handleCategoryClick = (category) => {
+        navigate('/work-categories', { 
+            state: { 
+                selectedCategory: category.id
+            } 
+        });
+    };
+
+    // Navigate to all work categories
+    const navigateToAllCategories = () => {
+        navigate('/work-categories');
+    };
+
+    // Navigate to WorkCategories page
+    const navigateToWorkCategories = () => {
+        navigate('/work-categories');
+    };
+
+    // Navigate to specific work categories with state
+    const navigateToSpecificCategories = (categoryType) => {
+        navigate('/work-categories', { 
+            state: { 
+                selectedCategoryType: categoryType
+            } 
+        });
+>>>>>>> Stashed changes
     };
 
     return (
@@ -652,9 +828,31 @@ const InteriorPage = () => {
                             <span className="stat-label">Client Satisfaction</span>
                         </div>
                         <div className="stat">
-                            <span className="stat-number">15</span>
+                            <span className="stat-number">10+</span>
                             <span className="stat-label">Years Experience</span>
                         </div>
+                    </div>
+                    
+                    {/* Quick Contact Buttons in Hero */}
+                    <div className="hero-contact-buttons">
+                        <button 
+                            className="hero-btn call"
+                            onClick={() => makePhoneCall()}
+                        >
+                            <FaPhone /> Call Now: {contactInfo.formattedPhone}
+                        </button>
+                        <button 
+                            className="hero-btn whatsapp"
+                            onClick={() => sendWhatsApp()}
+                        >
+                            <FaWhatsapp /> WhatsApp Us
+                        </button>
+                        <button 
+                            className="hero-btn email"
+                            onClick={() => sendEmail()}
+                        >
+                            <FaEnvelope /> Email Us
+                        </button>
                     </div>
                 </div>
                 
@@ -698,6 +896,7 @@ const InteriorPage = () => {
                     </div>
                 </div>
             </section>
+<<<<<<< Updated upstream
 
             {/* Categories Section */}
             <section className="categories-section">
@@ -745,6 +944,139 @@ const InteriorPage = () => {
                     </button>
                 </div>
             </section>
+=======
+{/* Categories Section - NOW NAVIGATES TO WorkCategories */}
+<section className="services-section">  {/* Changed from categories-section */}
+  <div className="container">
+    <h2 className="section-title">Explore Our Services</h2>
+    <p className="section-subtitle">
+      From concept to completion, we handle every aspect of your interior transformation
+    </p>
+    <div className="services-grid">  {/* Changed from categories-grid */}
+      {categories.map(category => (
+        <div key={category.id} className="service-card-square">  {/* Changed from category-card-square */}
+          <CategoryCard
+            {...category}
+            isActive={activeCategory === category.id}
+            onClick={() => handleCategoryClick(category)}
+            contactInfo={contactInfo}
+            onCall={() => makePhoneCall()}
+            onWhatsApp={() => sendWhatsApp(`Hello! I'm interested in your ${category.title} services. Could you please share more details?`)}
+          />
+          <div className="service-square-buttons">  {/* Changed from category-square-buttons */}
+            <button uare-btn 
+              className="service-btn view-projects" 
+              onClick={() => handleCategoryClick(category)}
+            >
+              <FaImages /> View Projects
+            </button>
+            <button 
+              className="service-btn whatsapp"
+              onClick={() => whatsappContractor(contractors[0], null, category)}
+            >
+              <FaWhatsapp /> Get Quote
+            </button>
+            <button 
+              className="service-btn call"  
+              onClick={() => callContractor(contractors[0])}
+            >
+              <FaPhone /> Call Now
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+    <button
+      className="view-all-btn"
+      onClick={navigateToAllCategories}
+    >
+      <FaArrowRight /> Browse All 100+ Work Categories
+    </button>
+  </div>
+</section>
+{/* Work Categories Section */}
+<section className="interior-categories-preview">
+  <div className="container">
+    <div className="section-header">
+      <h2 className="section-title">100+ Interior Work Categories</h2>
+      <p className="section-subtitle">
+        We specialize in every aspect of interior design and construction
+      </p>
+    </div>
+    
+    <div className="interior-categories-overview"> 
+      <div className="overview-content">
+        <h3>Complete Interior Solutions</h3>
+        <p>From basic furniture to complete home transformations, we handle it all with expertise and precision.</p>
+        <div className="interior-category-groups"> 
+          <div className="interior-category-group"> 
+            
+            <h4 
+              className="interior-category-title" 
+              
+              onClick={() => navigateToSpecificCategories('residential')}
+              style={{cursor: 'pointer'}}
+            >
+              🏠 Residential Interiors
+            </h4>
+            <p>Living rooms, bedrooms, kitchens, bathrooms</p>
+            <button 
+              className="interior-category-btn" 
+              
+              onClick={() => navigateToSpecificCategories('residential')}
+            >
+              View 40+ Categories <FaArrowRight />
+            </button>
+          </div>
+          <div className="interior-category-group"> 
+            
+            <h4 
+              className="interior-category-title" 
+              
+              onClick={() => navigateToSpecificCategories('commercial')}
+              style={{cursor: 'pointer'}}
+            >
+              🏢 Commercial Spaces
+            </h4>
+            <p>Offices, restaurants, shops, showrooms</p>
+            <button 
+              className="interior-category-btn" 
+              onClick={() => navigateToSpecificCategories('commercial')}
+            >
+              View 30+ Categories <FaArrowRight />
+            </button>
+          </div>
+          <div className="interior-category-group"> {/* Changed class name */}
+            <h4 
+              className="interior-category-title" 
+              onClick={() => navigateToSpecificCategories('specialty')}
+              style={{cursor: 'pointer'}}
+            >
+              🎯 Specialty Work
+            </h4>
+            <p>Custom furniture, built-ins, renovations</p>
+            <button 
+              className="interior-category-btn" 
+              onClick={() => navigateToSpecificCategories('specialty')}
+            >
+              View 30+ Categories <FaArrowRight />
+            </button>
+          </div>
+        </div>
+        <button 
+          className="interior-explore-btn" 
+          onClick={navigateToWorkCategories}
+        >
+          <FaArrowRight /> Explore All 100+ Categories
+        </button>
+      </div>
+      <div className="overview-image">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&auto=format&fit=crop" alt="Interior Work" />
+      </div>
+    </div>
+  </div>
+</section>
+>>>>>>> Stashed changes
 
             {/* Gallery Section */}
             <section className="gallery-section">
@@ -765,17 +1097,29 @@ const InteriorPage = () => {
                                         className="gallery-hire-btn view-details"
                                         onClick={() => handleProjectClick(item)}
                                     >
+<<<<<<< Updated upstream
                                         <FaArrowRight /> View Complete Project
+=======
+                                        <FaArrowRight /> View Project
+>>>>>>> Stashed changes
                                     </button>
                                     <button 
                                         className="gallery-hire-btn whatsapp"
                                         onClick={() => whatsappContractor(contractors[0], item)}
                                     >
+<<<<<<< Updated upstream
                                         <FaWhatsapp /> Hire for Similar
                                     </button>
                                     <button 
                                         className="gallery-hire-btn call"
                                         onClick={() => callContractor(contractors[0].phone)}
+=======
+                                        <FaWhatsapp /> Get Quote
+                                    </button>
+                                    <button 
+                                        className="gallery-hire-btn call"
+                                        onClick={() => callContractor(contractors[0])}
+>>>>>>> Stashed changes
                                     >
                                         <FaPhone /> Call Now
                                     </button>
@@ -786,10 +1130,17 @@ const InteriorPage = () => {
                 </div>
             </section>
 
+<<<<<<< Updated upstream
             {/* Enhanced FurnitureWork with more work types */}
             <FurnitureWork contractors={contractors} />
             
             {/* Enhanced ContractCarpainter with more services */}
+=======
+            {/* Enhanced FurnitureWork */}
+            <FurnitureWork contractors={contractors} />
+            
+            {/* Enhanced ContractCarpainter */}
+>>>>>>> Stashed changes
             <ContractCarpainter contractors={contractors} />
 
             {/* Contractor Contact Section */}
@@ -797,7 +1148,11 @@ const InteriorPage = () => {
                 <div className="container">
                     <h2 className="section-title">Hire Expert Contractors</h2>
                     <p className="section-subtitle">
+<<<<<<< Updated upstream
                         Connect with verified professionals for your interior work needs
+=======
+                        Connect with our verified professionals for your interior work needs
+>>>>>>> Stashed changes
                     </p>
                     
                     <div className="contractor-grid">
@@ -829,6 +1184,12 @@ const InteriorPage = () => {
                                                 <FaCalendarAlt />
                                                 <span>{contractor.experience} experience</span>
                                             </div>
+<<<<<<< Updated upstream
+=======
+                                            <div className="contractor-contact-info">
+                                                <FaPhone /> <strong>Phone:</strong> {contactInfo.formattedPhone}
+                                            </div>
+>>>>>>> Stashed changes
                                         </div>
                                     </div>
                                 </div>
@@ -845,6 +1206,7 @@ const InteriorPage = () => {
                                     <div className="contractor-expertise">
                                         <strong>Expertise:</strong> {contractor.expertise.join(', ')}
                                     </div>
+<<<<<<< Updated upstream
                                     <div className="contractor-rate">
                                         <FaMoneyBill /> <strong>Hourly Rate:</strong> {contractor.hourlyRate}
                                     </div>
@@ -853,15 +1215,30 @@ const InteriorPage = () => {
                                     </div>
                                     <div className="contractor-availability">
                                         <FaClock /> <strong>Response Time:</strong> {contractor.responseTime}
+=======
+                                    <div className="contractor-availability">
+                                        <FaClock /> <strong>Availability:</strong> {contractor.availability}
+                                    </div>
+                                    <div className="contractor-response">
+                                        <FaCheckCircle /> <strong>Response Time:</strong> {contractor.responseTime}
+>>>>>>> Stashed changes
                                     </div>
                                 </div>
                                 
                                 <div className="contractor-contact">
+<<<<<<< Updated upstream
                                     <h4>Contact Contractor:</h4>
                                     <div className="contact-buttons">
                                         <button 
                                             className="contact-btn call-btn"
                                             onClick={() => callContractor(contractor.phone)}
+=======
+                                    <h4>Contact Now:</h4>
+                                    <div className="contact-buttons">
+                                        <button 
+                                            className="contact-btn call-btn"
+                                            onClick={() => callContractor(contractor)}
+>>>>>>> Stashed changes
                                         >
                                             <FaPhone /> Call Now
                                         </button>
@@ -878,6 +1255,122 @@ const InteriorPage = () => {
                                             <FaEnvelope /> Email
                                         </button>
                                     </div>
+<<<<<<< Updated upstream
+=======
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Quick Hire Banner */}
+            <section className="quick-hire-banner">
+                <div className="container">
+                    <div className="banner-content">
+                        <div className="banner-text">
+                            <h3>Need Immediate Help?</h3>
+                            <p>Connect with our team instantly</p>
+                            <div className="contact-display">
+                                <div className="contact-item">
+                                    <FaPhone /> <span>{contactInfo.formattedPhone}</span>
+                                </div>
+                                <div className="contact-item">
+                                    <FaWhatsapp /> <span>{contactInfo.whatsapp}</span>
+                                </div>
+                                <div className="contact-item">
+                                    <FaEnvelope /> <span>{contactInfo.email}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="banner-actions">
+                            <button 
+                                className="banner-btn whatsapp"
+                                onClick={() => sendWhatsApp()}
+                            >
+                                <FaWhatsapp /> Chat on WhatsApp
+                            </button>
+                            <button 
+                                className="banner-btn call"
+                                onClick={() => makePhoneCall()}
+                            >
+                                <FaPhone /> Call Now
+                            </button>
+                            <button 
+                                className="banner-btn categories"
+                                onClick={navigateToWorkCategories}
+                            >
+                                <FaHome /> Browse 100+ Work Categories
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Free Consultation Section */}
+            <section className="consultation-section">
+                <div className="container">
+                    <div className="consultation-card">
+                        <div className="consultation-content">
+                            <h2>Get Free Consultation</h2>
+                            <p>Book a free site visit and consultation with our interior experts</p>
+                            <div className="consultation-features">
+                                <div className="feature">
+                                    <div className="feature-icon">📐</div>
+                                    <div className="feature-text">Free Site Measurement</div>
+                                </div>
+                                <div className="feature">
+                                    <div className="feature-icon">💡</div>
+                                    <div className="feature-text">Expert Design Advice</div>
+                                </div>
+                                <div className="feature">
+                                    <div className="feature-icon">💰</div>
+                                    <div className="feature-text">Detailed Quotation</div>
+                                </div>
+                                <div className="feature">
+                                    <div className="feature-icon">📅</div>
+                                    <div className="feature-text">Flexible Scheduling</div>
+                                </div>
+                            </div>
+                            <div className="consultation-form">
+                                <input type="text" placeholder="Your Name" />
+                                <input type="tel" placeholder="Phone Number" defaultValue={contactInfo.phone} />
+                                <input type="email" placeholder="Email Address" />
+                                <select>
+                                    <option value="">Select Service Required</option>
+                                    <option value="wardrobe">Custom Wardrobe</option>
+                                    <option value="kitchen">Modular Kitchen</option>
+                                    <option value="complete">Complete Interior</option>
+                                    <option value="custom">Custom Work</option>
+                                </select>
+                                <button 
+                                    className="btn-primary"
+                                    onClick={() => sendWhatsApp('I want to book a free consultation for interior design services.')}
+                                >
+                                    Request Free Consultation
+                                </button>
+                            </div>
+                            <div className="direct-contact">
+                                <p>Or contact directly:</p>
+                                <div className="direct-buttons">
+                                    <button onClick={() => makePhoneCall()}>
+                                        <FaPhone /> Call: {contactInfo.formattedPhone}
+                                    </button>
+                                    <button onClick={() => sendWhatsApp()}>
+                                        <FaWhatsapp /> WhatsApp
+                                    </button>
+                                </div>
+                                <div className="browse-categories-link">
+                                    <p>
+                                        Want to see all our services? 
+                                        <button 
+                                            className="inline-link-btn"
+                                            onClick={navigateToWorkCategories}
+                                        >
+                                            <FaArrowRight /> Browse 100+ Work Categories
+                                        </button>
+                                    </p>
+>>>>>>> Stashed changes
                                 </div>
                             </div>
                         ))}

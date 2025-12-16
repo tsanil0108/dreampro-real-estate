@@ -24,7 +24,11 @@ const Properties = () => {
     // MUMBAI PROPERTIES
     {
       id: 1,
+<<<<<<< Updated upstream
       title: "Poton Tower",
+=======
+      title: "Paton Tower",
+>>>>>>> Stashed changes
       address: "Kandivali East, Lokhandwala, Mumbai",
       city: "Mumbai",
       district: "Mumbai Suburban",
@@ -424,17 +428,24 @@ const Properties = () => {
   }, [searchTerm, selectedCity]);
 
   return (
-    <div className="properties-page">
-      <div className="container">
+    <div className="properties-page-main">
+      <div className="properties-container">
         {/* Page Header */}
+<<<<<<< Updated upstream
         <div className="page-header">
           <h1 className="page-title">Premium Properties Across India</h1>
           <p className="page-subtitle">
+=======
+        <div className="properties-page-header">
+          <h1 className="properties-page-title">Premium Properties Across India</h1>
+          <p className="properties-page-subtitle">
+>>>>>>> Stashed changes
             Currently available in {availableCities.length} cities. More cities launching soon!
           </p>
         </div>
 
         {/* City Availability Status */}
+<<<<<<< Updated upstream
         <div className="availability-info">
           <div className="availability-badge available">
             <span className="status-dot available"></span>
@@ -559,10 +570,137 @@ const Properties = () => {
                   <div className="location-badge">
                     <span className="city-badge">{property.city}</span>
                     <span className="district-badge">{property.district}</span>
+=======
+        <div className="properties-availability-info">
+          <div className="properties-availability-badge available">
+            <span className="properties-status-dot available"></span>
+            <span>{getTotalPropertiesCount()} Properties Available</span>
+          </div>
+          <div className="properties-availability-badge coming-soon">
+            <span className="properties-status-dot coming-soon"></span>
+            <span>{getComingSoonCount()} Properties Coming Soon</span>
+          </div>
+        </div>
+
+        {/* Search Section */}
+        <div className="properties-search-section">
+          <div className="properties-search-container">
+            <div className="properties-search-box">
+              <div className="properties-search-input-container">
+                <input 
+                  type="text" 
+                  placeholder="Search properties by name, location, or city..." 
+                  className="properties-search-input"
+                  value={searchTerm}
+                  onChange={handleSearch}
+                  onKeyPress={handleKeyPress}
+                />
+                <button className="properties-search-btn" onClick={() => setCurrentPage(1)}>
+                  <span>🔍</span>
+                </button>
+              </div>
+              
+              {(searchTerm || selectedCity) && (
+                <button className="properties-clear-btn" onClick={clearFilters}>
+                  Clear Filters
+                </button>
+              )}
+            </div>
+
+            {/* Quick Filters */}
+            <div className="properties-quick-filters">
+              <div className="properties-filter-label">Filter by City:</div>
+              <div className="properties-city-chips">
+                <button 
+                  className={`properties-city-chip ${selectedCity === "" ? 'properties-city-active' : ''}`}
+                  onClick={() => handleCitySelect("")}
+                >
+                  All Cities ({getTotalPropertiesCount()})
+                </button>
+                
+                {availableCities.map(city => (
+                  <button 
+                    key={city}
+                    className={`properties-city-chip ${selectedCity === city ? 'properties-city-active' : ''}`}
+                    onClick={() => handleCitySelect(city)}
+                  >
+                    {city}
+                    <span className="properties-city-count">{getCityPropertyCount(city)}</span>
+                    <span className="properties-city-status available">Available</span>
+                  </button>
+                ))}
+                
+                {indianCities
+                  .filter(city => !availableCities.includes(city))
+                  .slice(0, 5)
+                  .map(city => (
+                    <button 
+                      key={city}
+                      className={`properties-city-chip properties-coming-soon-chip ${selectedCity === city ? 'properties-city-active' : ''}`}
+                      onClick={() => handleCitySelect(city)}
+                    >
+                      {city}
+                      <span className="properties-city-status coming-soon">Soon</span>
+                    </button>
+                  ))}
+              </div>
+            </div>
+
+            {/* Results Info */}
+            <div className="properties-results-info">
+              <span className="properties-results-count">
+                {filteredProperties.length > 0 ? (
+                  `Showing ${Math.min(currentProperties.length, propertiesPerPage)} of ${filteredProperties.length} properties`
+                ) : (
+                  "No properties found"
+                )}
+              </span>
+              {selectedCity && selectedCity !== "" && (
+                <span className="properties-selected-city">
+                  in <strong>{selectedCity}</strong>
+                  {!availableCities.includes(selectedCity) && (
+                    <span className="properties-city-availability"> (Coming Soon)</span>
+                  )}
+                </span>
+              )}
+              {searchTerm && searchTerm.trim() !== "" && (
+                <span className="properties-search-term">
+                  for "<strong>{searchTerm}</strong>"
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Properties Grid */}
+        <div className="properties-grid-main">
+          {currentProperties.length > 0 ? (
+            currentProperties.map((property) => (
+              <div key={property.id} className={`properties-card ${property.featured ? 'properties-featured' : ''}`}>
+                
+                {/* Property Image */}
+                <div className="properties-image">
+                  <img src={property.image} alt={property.title} />
+                  
+                  {/* Available Badge */}
+                  <div className="properties-availability-badge-image">
+                    {property.available ? (
+                      <span className="properties-available-tag">AVAILABLE NOW</span>
+                    ) : (
+                      <span className="properties-coming-soon-tag-image">COMING SOON</span>
+                    )}
+                  </div>
+                  
+                  {/* Location Badge */}
+                  <div className="properties-location-badge">
+                    <span className="properties-city-badge">{property.city}</span>
+                    <span className="properties-district-badge">{property.district}</span>
+>>>>>>> Stashed changes
                   </div>
                 </div>
 
                 {/* Property Content */}
+<<<<<<< Updated upstream
                 <div className="property-content">
                   <div className="property-header">
                     <h3 className="property-title">{property.title}</h3>
@@ -571,10 +709,21 @@ const Properties = () => {
                     <div className="developer-info">
                       {property.developer && (
                         <span className="developer-badge">{property.developer}</span>
+=======
+                <div className="properties-content">
+                  <div className="properties-header">
+                    <h3 className="properties-title">{property.title}</h3>
+                    
+                    {/* Developer Badge */}
+                    <div className="properties-developer-info">
+                      {property.developer && (
+                        <span className="properties-developer-badge">{property.developer}</span>
+>>>>>>> Stashed changes
                       )}
                     </div>
                   </div>
                   
+<<<<<<< Updated upstream
                   <p className="property-address">{property.address}</p>
                   
                   {/* DARK THEME Property Details */}
@@ -592,22 +741,53 @@ const Properties = () => {
                     <div className="detail-row">
                       <span className="detail-label">District</span>
                       <span className="detail-value">{property.district}</span>
+=======
+                  <p className="properties-address">{property.address}</p>
+                  
+                  {/* Property Details */}
+                  <div className="properties-details">
+                    <div className="properties-detail-row">
+                      <span className="properties-detail-label">Status</span>
+                      <span className={`properties-detail-value ${property.available ? 'properties-available' : 'properties-coming-soon'}`}>
+                        {property.status}
+                      </span>
+                    </div>
+                    <div className="properties-detail-row">
+                      <span className="properties-detail-label">City</span>
+                      <span className="properties-detail-value">{property.city}</span>
+                    </div>
+                    <div className="properties-detail-row">
+                      <span className="properties-detail-label">District</span>
+                      <span className="properties-detail-value">{property.district}</span>
+>>>>>>> Stashed changes
                     </div>
                   </div>
                   
                   {/* Divider */}
+<<<<<<< Updated upstream
                   <div className="divider"></div>
+=======
+                  <div className="properties-divider"></div>
+>>>>>>> Stashed changes
                   
                   {/* View Details Button */}
                   {property.available ? (
                     <Link 
                       to={`/property/${property.id}`} 
+<<<<<<< Updated upstream
                       className="btn-view-details"
+=======
+                      className="properties-btn-view-details"
+>>>>>>> Stashed changes
                     >
                       VIEW DETAILS
                     </Link>
                   ) : (
+<<<<<<< Updated upstream
                     <button className="btn-view-details disabled" disabled>
+=======
+                    <button className="properties-btn-view-details properties-disabled" disabled>
+>>>>>>> Stashed changes
                       COMING SOON
                     </button>
                   )}
@@ -615,10 +795,17 @@ const Properties = () => {
               </div>
             ))
           ) : (
+<<<<<<< Updated upstream
             <div className="no-properties-found">
               <h3>No properties found</h3>
               <p>Try adjusting your search filters or browse properties in available cities.</p>
               <button className="btn-primary" onClick={clearFilters}>
+=======
+            <div className="properties-no-properties-found">
+              <h3>No properties found</h3>
+              <p>Try adjusting your search filters or browse properties in available cities.</p>
+              <button className="properties-btn-primary" onClick={clearFilters}>
+>>>>>>> Stashed changes
                 Clear Filters
               </button>
             </div>
@@ -627,9 +814,15 @@ const Properties = () => {
 
         {/* Pagination */}
         {totalPages > 1 && (
+<<<<<<< Updated upstream
           <div className="pagination">
             <button 
               className={`pagination-btn ${currentPage === 1 ? 'disabled' : ''}`}
+=======
+          <div className="properties-pagination">
+            <button 
+              className={`properties-pagination-btn ${currentPage === 1 ? 'properties-disabled' : ''}`}
+>>>>>>> Stashed changes
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
             >
@@ -646,10 +839,17 @@ const Properties = () => {
               .map((page, index, array) => (
                 <React.Fragment key={page}>
                   {index > 0 && page - array[index - 1] > 1 && (
+<<<<<<< Updated upstream
                     <span className="pagination-ellipsis">...</span>
                   )}
                   <button
                     className={`pagination-btn ${currentPage === page ? 'active' : ''}`}
+=======
+                    <span className="properties-pagination-ellipsis">...</span>
+                  )}
+                  <button
+                    className={`properties-pagination-btn ${currentPage === page ? 'properties-active' : ''}`}
+>>>>>>> Stashed changes
                     onClick={() => handlePageChange(page)}
                   >
                     {page}
@@ -658,7 +858,11 @@ const Properties = () => {
               ))}
             
             <button 
+<<<<<<< Updated upstream
               className={`pagination-btn ${currentPage === totalPages ? 'disabled' : ''}`}
+=======
+              className={`properties-pagination-btn ${currentPage === totalPages ? 'properties-disabled' : ''}`}
+>>>>>>> Stashed changes
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
             >
@@ -668,6 +872,7 @@ const Properties = () => {
         )}
 
         {/* Explore Cities */}
+<<<<<<< Updated upstream
         <div className="explore-cities">
           <h3>Properties Available in These Cities</h3>
           <div className="all-cities-grid">
@@ -680,29 +885,56 @@ const Properties = () => {
                 {city}
                 <span className="city-item-count">{getCityPropertyCount(city)} properties</span>
                 <span className="city-item-status available">Available Now</span>
+=======
+        <div className="properties-explore-cities">
+          <h3>Properties Available in These Cities</h3>
+          <div className="properties-all-cities-grid">
+            {availableCities.map((city) => (
+              <button
+                key={city}
+                className="properties-city-item properties-available"
+                onClick={() => handleCitySelect(city)}
+              >
+                {city}
+                <span className="properties-city-item-count">{getCityPropertyCount(city)} properties</span>
+                <span className="properties-city-item-status properties-available">Available Now</span>
+>>>>>>> Stashed changes
               </button>
             ))}
           </div>
           
           <h3>Properties Launching Soon</h3>
+<<<<<<< Updated upstream
           <div className="all-cities-grid">
+=======
+          <div className="properties-all-cities-grid">
+>>>>>>> Stashed changes
             {indianCities
               .filter(city => !availableCities.includes(city))
               .slice(0, 12)
               .map((city) => (
                 <button
                   key={city}
+<<<<<<< Updated upstream
                   className="city-item coming-soon"
                   onClick={() => handleCitySelect(city)}
                 >
                   {city}
                   <span className="city-item-status">Launching Soon</span>
+=======
+                  className="properties-city-item properties-coming-soon"
+                  onClick={() => handleCitySelect(city)}
+                >
+                  {city}
+                  <span className="properties-city-item-status">Launching Soon</span>
+>>>>>>> Stashed changes
                 </button>
               ))}
           </div>
         </div>
 
         {/* Contact CTA */}
+<<<<<<< Updated upstream
         <div className="contact-cta">
           <h3>Looking for properties in other cities?</h3>
           <p>Join our waitlist to be notified when we launch in your city</p>
@@ -711,6 +943,16 @@ const Properties = () => {
               JOIN WAITLIST
             </Link>
             <button className="btn-secondary" onClick={clearFilters}>
+=======
+        <div className="properties-contact-cta">
+          <h3>Looking for properties in other cities?</h3>
+          <p>Join our waitlist to be notified when we launch in your city</p>
+          <div className="properties-cta-buttons">
+            <Link to="/contactagent" className="properties-btn-primary">
+              JOIN WAITLIST
+            </Link>
+            <button className="properties-btn-secondary" onClick={clearFilters}>
+>>>>>>> Stashed changes
               BROWSE ALL PROPERTIES
             </button>
           </div>

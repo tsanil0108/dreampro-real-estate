@@ -1,64 +1,63 @@
 import React, { useState } from "react";
+import { 
+  FaHome, 
+  FaPaintRoller, 
+  FaCalendarAlt, 
+  FaClock, 
+  FaPhone, 
+  FaCheckCircle, 
+  FaUser, 
+  FaMapMarkerAlt 
+} from "react-icons/fa";
 import "./BookVisitt.css";
 
 const BookVisit = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    email: "",
-    preferredDate: "",
-    preferredTime: "",
-    propertyType: "",
-    budget: "",
-    message: "",
-    visitType: "in-person"
+    serviceType: "",
+    date: "",
+    time: "",
+    address: "",
+    selectedCategory: "" // "real-estate" or "interior"
   });
 
-  const [selectedProperty, setSelectedProperty] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("interior");
 
-  const featuredProperties = [
+  const serviceCategories = [
     {
-      id: 1,
-      title: "Modern Downtown Apartment",
-      price: 350000,
-      address: "123 Main St, New York, NY",
-      bedrooms: 2,
-      bathrooms: 2,
-      sqft: 1200,
-      type: "Apartment",
-      image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400",
-      availableDates: ["2024-02-15", "2024-02-16", "2024-02-17"]
+      id: "interior",
+      name: "Interior Work",
+      icon: <FaPaintRoller />,
+      description: "Carpentry, furniture, and design services",
+      services: [
+        { id: "carpentry", name: "Carpentry Work", icon: "🛠️" },
+        { id: "furniture", name: "Custom Furniture", icon: "🛋️" },
+        { id: "wardrobe", name: "Wardrobe Making", icon: "👔" },
+        { id: "kitchen", name: "Kitchen Design", icon: "🍳" },
+        { id: "painting", name: "Painting Work", icon: "🎨" },
+        { id: "consultation", name: "Design Consultation", icon: "💡" }
+      ]
     },
     {
-      id: 2,
-      title: "Luxury Beach Villa",
-      price: 1250000,
-      address: "456 Ocean Drive, Miami, FL",
-      bedrooms: 4,
-      bathrooms: 3,
-      sqft: 3200,
-      type: "Villa",
-      image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=400",
-      availableDates: ["2024-02-14", "2024-02-18", "2024-02-20"]
-    },
-    {
-      id: 3,
-      title: "Contemporary City Loft",
-      price: 750000,
-      address: "789 Downtown Ave, Chicago, IL",
-      bedrooms: 3,
-      bathrooms: 2,
-      sqft: 1800,
-      type: "Loft",
-      image: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400",
-      availableDates: ["2024-02-16", "2024-02-19", "2024-02-21"]
+      id: "real-estate",
+      name: "Real Estate",
+      icon: <FaHome />,
+      description: "Property visits and consultations",
+      services: [
+        { id: "property-visit", name: "Property Visit", icon: "🏠" },
+        { id: "home-loan", name: "Home Loan Guidance", icon: "💰" },
+        { id: "legal", name: "Legal Consultation", icon: "⚖️" },
+        { id: "valuation", name: "Property Valuation", icon: "📊" },
+        { id: "rental", name: "Rental Services", icon: "🏘️" },
+        { id: "investment", name: "Investment Advice", icon: "📈" }
+      ]
     }
   ];
 
   const timeSlots = [
-    "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", 
-    "11:00 AM", "11:30 AM", "02:00 PM", "02:30 PM", 
-    "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM"
+    "9:00 AM", "10:00 AM", "11:00 AM", 
+    "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"
   ];
 
   const handleChange = (e) => {
@@ -68,262 +67,245 @@ const BookVisit = () => {
     });
   };
 
-  const handlePropertySelect = (property) => {
-    setSelectedProperty(property);
-    setFormData(prev => ({
-      ...prev,
-      propertyType: property.type
-    }));
+  const handleCategorySelect = (categoryId) => {
+    setActiveCategory(categoryId);
+    setFormData({
+      ...formData,
+      selectedCategory: categoryId,
+      serviceType: ""
+    });
+  };
+
+  const handleServiceSelect = (serviceId) => {
+    setFormData({
+      ...formData,
+      serviceType: serviceId
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    if (!formData.name || !formData.phone || !formData.selectedCategory || !formData.serviceType) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    const selectedCategory = serviceCategories.find(cat => cat.id === formData.selectedCategory);
+    const selectedService = selectedCategory.services.find(s => s.id === formData.serviceType);
+    
     const bookingData = {
       ...formData,
-      selectedProperty: selectedProperty?.title || "Not specified"
+      category: selectedCategory.name,
+      service: selectedService.name
     };
-    
+
     console.log("Booking Data:", bookingData);
     
-    alert(`Thank you ${formData.name}! Your visit has been booked successfully.\n\nWe've sent confirmation details to ${formData.email}.\nOur agent will contact you shortly to confirm the appointment.`);
+    alert(`Thank you ${formData.name}!\n\nYour booking for ${selectedService.name} has been confirmed.\nOur expert will contact you shortly at ${formData.phone}.`);
     
     // Reset form
     setFormData({
       name: "",
       phone: "",
-      email: "",
-      preferredDate: "",
-      preferredTime: "",
-      propertyType: "",
-      budget: "",
-      message: "",
-      visitType: "in-person"
+      serviceType: "",
+      date: "",
+      time: "",
+      address: "",
+      selectedCategory: ""
     });
-    setSelectedProperty(null);
+    setActiveCategory("interior");
   };
 
-  const isFormValid = () => {
-    return formData.name && formData.phone && formData.email && 
-           formData.preferredDate && formData.preferredTime;
-  };
+  const currentServices = serviceCategories.find(cat => cat.id === activeCategory)?.services || [];
 
   return (
-    <div className="book-visit-page">
-      <div className="container">
-        <div className="page-header">
-          <h1>BOOK A PROPERTY VISIT</h1>
-          <p>Schedule your personalized tour with our expert agents</p>
-        </div>
+    <div className="book-visit-container">
+      <h1>Book Service Visit</h1>
+      <p>Schedule a visit with our experts for interior work or real estate services</p>
 
-        <div className="book-visit-container">
-          {/* Featured Properties */}
-          <div className="properties-section">
-            <h2>Featured Properties</h2>
-            <p className="section-subtitle">Select a property to visit or choose your preferred type</p>
-            
-            <div className="properties-grid">
-              {featuredProperties.map(property => (
-                <div 
-                  key={property.id} 
-                  className={`property-card ${selectedProperty?.id === property.id ? 'selected' : ''}`}
-                  onClick={() => handlePropertySelect(property)}
-                >
-                  <img src={property.image} alt={property.title} className="property-image" />
-                  <div className="property-info">
-                    <h3>{property.title}</h3>
-                    <p className="property-price">${property.price.toLocaleString()}</p>
-                    <p className="property-address">{property.address}</p>
-                    <div className="property-details">
-                      <span>🛏 {property.bedrooms} beds</span>
-                      <span>🚿 {property.bathrooms} baths</span>
-                      <span>📐 {property.sqft} sqft</span>
-                    </div>
-                    <div className="property-type">{property.type}</div>
-                  </div>
-                  {selectedProperty?.id === property.id && (
-                    <div className="selected-badge">Selected</div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <div className="selection-info">
-              {selectedProperty ? (
-                <div className="selected-property-info">
-                  <h4>Selected Property:</h4>
-                  <p><strong>{selectedProperty.title}</strong> - ${selectedProperty.price.toLocaleString()}</p>
-                </div>
-              ) : (
-                <p className="select-prompt">👆 Click on a property to select it for your visit</p>
-              )}
-            </div>
-          </div>
-
-          {/* Booking Form */}
-          <div className="booking-form-section">
-            <h2>Schedule Your Visit</h2>
-            
-            <form className="booking-form" onSubmit={handleSubmit}>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Full Name *</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    placeholder="Your full name"
-                    className="form-input"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Phone Number *</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    placeholder="Your phone number"
-                    className="form-input"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label>Email Address *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  placeholder="Your email address"
-                  className="form-input"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Visit Type</label>
-                  <select
-                    name="visitType"
-                    value={formData.visitType}
-                    className="form-input"
-                    onChange={handleChange}
-                  >
-                    <option value="in-person">In-Person Visit</option>
-                    <option value="virtual">Virtual Tour</option>
-                    <option value="video-call">Video Call Consultation</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label>Budget Range</label>
-                  <select
-                    name="budget"
-                    value={formData.budget}
-                    className="form-input"
-                    onChange={handleChange}
-                  >
-                    <option value="">Select budget</option>
-                    <option value="under-500k">Under $500K</option>
-                    <option value="500k-1m">$500K - $1M</option>
-                    <option value="1m-2m">$1M - $2M</option>
-                    <option value="over-2m">Over $2M</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Preferred Date *</label>
-                  <input
-                    type="date"
-                    name="preferredDate"
-                    value={formData.preferredDate}
-                    className="form-input"
-                    onChange={handleChange}
-                    min={new Date().toISOString().split('T')[0]}
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Preferred Time *</label>
-                  <select
-                    name="preferredTime"
-                    value={formData.preferredTime}
-                    className="form-input"
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Select time</option>
-                    {timeSlots.map(time => (
-                      <option key={time} value={time}>{time}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label>Property Type</label>
-                <select
-                  name="propertyType"
-                  value={formData.propertyType}
-                  className="form-input"
-                  onChange={handleChange}
-                >
-                  <option value="">Select property type</option>
-                  <option value="apartment">Apartment</option>
-                  <option value="house">House</option>
-                  <option value="villa">Villa</option>
-                  <option value="condo">Condo</option>
-                  <option value="commercial">Commercial</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label>Additional Message</label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  placeholder="Any specific requirements or questions..."
-                  className="form-textarea"
-                  rows="4"
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div className="form-features">
-                <h4>What's Included:</h4>
-                <ul>
-                  <li>✅ Professional guided tour</li>
-                  <li>✅ Detailed property walkthrough</li>
-                  <li>✅ Q&A session with expert agent</li>
-                  <li>✅ Neighborhood overview</li>
-                  <li>✅ Financing consultation available</li>
-                </ul>
-              </div>
-
-              <button 
-                type="submit" 
-                className={`submit-btn ${!isFormValid() ? 'disabled' : ''}`}
-                disabled={!isFormValid()}
-              >
-                CONFIRM BOOKING
-              </button>
-
-              <p className="form-note">
-                * Our agent will contact you within 2 hours to confirm your appointment details.
-              </p>
-            </form>
-          </div>
+      {/* Category Selection */}
+      <div className="category-selection">
+        <h3>Select Service Category</h3>
+        <div className="category-tabs">
+          {serviceCategories.map(category => (
+            <button
+              key={category.id}
+              className={`category-tab ${activeCategory === category.id ? 'active' : ''}`}
+              onClick={() => handleCategorySelect(category.id)}
+            >
+              <span className="tab-icon">{category.icon}</span>
+              <span className="tab-name">{category.name}</span>
+              <span className="tab-description">{category.description}</span>
+            </button>
+          ))}
         </div>
       </div>
+
+      {/* Service Selection */}
+      <div className="services-section">
+        <h3>Select Service Type</h3>
+        <div className="services-grid">
+          {currentServices.map(service => (
+            <div 
+              key={service.id}
+              className={`service-card ${formData.serviceType === service.id ? 'selected' : ''}`}
+              onClick={() => handleServiceSelect(service.id)}
+            >
+              <span className="service-icon">{service.icon}</span>
+              <span className="service-name">{service.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Booking Form */}
+      <form className="booking-form" onSubmit={handleSubmit}>
+        <div className="form-row">
+          <div className="form-group">
+            <label><FaUser /> Your Name *</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              placeholder="Enter your full name"
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label><FaPhone /> Phone Number *</label>
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              placeholder="Enter phone number"
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label><FaMapMarkerAlt /> Your Address</label>
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            placeholder="Enter site/property address"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-row">
+          <div className="form-group">
+            <label><FaCalendarAlt /> Preferred Date</label>
+            <input
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              min={new Date().toISOString().split('T')[0]}
+            />
+          </div>
+
+          <div className="form-group">
+            <label><FaClock /> Preferred Time</label>
+            <select
+              name="time"
+              value={formData.time}
+              onChange={handleChange}
+            >
+              <option value="">Select preferred time</option>
+              {timeSlots.map(time => (
+                <option key={time} value={time}>{time}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          className="submit-btn"
+          disabled={!formData.name || !formData.phone || !formData.selectedCategory || !formData.serviceType}
+        >
+          Book Free Consultation
+        </button>
+
+        <p className="note">
+          Our expert will visit your site, provide consultation, and give you a detailed proposal.
+        </p>
+      </form>
+
+      {/* Benefits Section */}
+      <div className="benefits">
+        <h3>Why Choose Our Services?</h3>
+        
+        {activeCategory === "interior" ? (
+          <div className="benefits-grid">
+            <div className="benefit">
+              <FaCheckCircle className="benefit-icon" />
+              <h4>Free Site Visit</h4>
+              <p>Expert site inspection and measurement</p>
+            </div>
+            <div className="benefit">
+              <FaCheckCircle className="benefit-icon" />
+              <h4>Professional Craftsmen</h4>
+              <p>Skilled carpenters and designers</p>
+            </div>
+            <div className="benefit">
+              <FaCheckCircle className="benefit-icon" />
+              <h4>3D Design Mockup</h4>
+              <p>Visualize your space before work begins</p>
+            </div>
+            <div className="benefit">
+              <FaCheckCircle className="benefit-icon" />
+              <h4>Material Guidance</h4>
+              <p>Expert advice on materials and finishes</p>
+            </div>
+          </div>
+        ) : (
+          <div className="benefits-grid">
+            <div className="benefit">
+              <FaCheckCircle className="benefit-icon" />
+              <h4>Property Tours</h4>
+              <p>Visit multiple properties with experts</p>
+            </div>
+            <div className="benefit">
+              <FaCheckCircle className="benefit-icon" />
+              <h4>Home Loan Assistance</h4>
+              <p>Guidance on financing options</p>
+            </div>
+            <div className="benefit">
+              <FaCheckCircle className="benefit-icon" />
+              <h4>Legal Support</h4>
+              <p>Documentation and legal assistance</p>
+            </div>
+            <div className="benefit">
+              <FaCheckCircle className="benefit-icon" />
+              <h4>Investment Advice</h4>
+              <p>Expert property investment guidance</p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Current Selection Display */}
+      {formData.selectedCategory && formData.serviceType && (
+        <div className="selection-summary">
+          <h4>You have selected:</h4>
+          <div className="selected-items">
+            <span className="selected-category">
+              {serviceCategories.find(cat => cat.id === formData.selectedCategory)?.name}
+            </span>
+            <span className="arrow">→</span>
+            <span className="selected-service">
+              {currentServices.find(s => s.id === formData.serviceType)?.name}
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

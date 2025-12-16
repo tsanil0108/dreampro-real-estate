@@ -44,6 +44,12 @@ import InteriorDashboard from './admin/pages/InteriorDashboard';
 import InteriorProjects from './admin/pages/InteriorProjects';
 import AddInteriorProject from './admin/pages/AddInteriorProject';
 
+<<<<<<< Updated upstream
+=======
+import WorkCategories from './pages/Interior/WorkCategories';
+
+
+>>>>>>> Stashed changes
 // Import Styles
 import './App.css';
 import './styles/admin.css';
@@ -107,7 +113,13 @@ const MainLayout = () => {
 
           {/* <Route path="/property/:id" element={<PropertyDetail />} /> */}
 
+<<<<<<< Updated upstream
        <Route path="/property/:id" element={<PropertyViewInfo />} /> 
+=======
+       <Route path="/property/:id" element={<PropertyViewInfo />} />
+       
+         <Route path="/work-categories" element={<WorkCategories />} /> 
+>>>>>>> Stashed changes
 
 
        <Route path="/project-complete" element={<ProjectComplete />} />  

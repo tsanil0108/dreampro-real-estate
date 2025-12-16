@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 // src/services/Api.js
 import axios from 'axios';
 
@@ -111,13 +112,21 @@ const handleHttpError = (error) => {
 // Create axios instance
 const Api = axios.create({
   baseURL: API_BASE_URL,
+=======
+// services/Api.jsx
+import axios from 'axios';
+
+// Create axios instance - REMOVE /api from baseURL!
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080', // No /api here!
+  timeout: 5000,
+>>>>>>> Stashed changes
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 15000,
-  withCredentials: false,
 });
 
+<<<<<<< Updated upstream
 // Request interceptor
 Api.interceptors.request.use(
   (config) => {
@@ -125,89 +134,276 @@ Api.interceptors.request.use(
     if (!navigator.onLine) {
       throw new axios.Cancel('No internet connection');
     }
+=======
+// Mock mode flag - CHANGE THIS TO false WHEN BACKEND IS WORKING
+const USE_MOCK_API = true;
+>>>>>>> Stashed changes
 
-    // Get token from multiple possible locations
-    const token = localStorage.getItem('dreampro_token') || 
-                  localStorage.getItem('accessToken') || 
-                  localStorage.getItem('token');
+// Mock data for testing
+const mockData = {
+  health: {
+    status: 'UP',
+    timestamp: new Date().toISOString(),
+    service: 'Spring Boot API',
+    version: '1.0.0',
+    message: 'Mock API is working'
+  },
+  authRegister: {
+    success: false,
+    message: 'User already exists',
+    timestamp: new Date().toISOString()
+  },
+  properties: {
+    items: [
+      {
+        id: 1,
+        title: 'Beautiful Apartment',
+        price: 1200,
+        location: 'New York',
+        type: 'Apartment'
+      },
+      {
+        id: 2,
+        title: 'Modern Villa',
+        price: 3500,
+        location: 'Los Angeles',
+        type: 'Villa'
+      },
+      {
+        id: 3,
+        title: 'Cozy Studio',
+        price: 800,
+        location: 'Chicago',
+        type: 'Studio'
+      }
+    ],
+    total: 3,
+    page: 1,
+    pageSize: 10
+  }
+};
+
+// Helper function to create axios-like response
+const createMockResponse = (data, status = 200, statusText = 'OK') => {
+  return {
+    data,
+    status,
+    statusText,
+    headers: {},
+    config: {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    },
+    request: {}
+  };
+};
+
+// Helper function to create axios-like error
+const createMockError = (message, status = 400, data = null) => {
+  const error = new Error(message);
+  error.response = createMockResponse(data || { message }, status, getStatusText(status));
+  error.request = {};
+  error.config = {};
+  return error;
+};
+
+// Get status text from status code
+const getStatusText = (status) => {
+  const statusMap = {
+    200: 'OK',
+    201: 'Created',
+    400: 'Bad Request',
+    401: 'Unauthorized',
+    403: 'Forbidden',
+    404: 'Not Found',
+    409: 'Conflict',
+    500: 'Internal Server Error'
+  };
+  return statusMap[status] || 'Unknown';
+};
+
+// Mock API functions
+const mockApi = {
+  get: async (url, config) => {
+    console.log('🔧 Mock GET:', url);
     
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    if (url === '/api/health' || url === '/health') {
+      return createMockResponse(mockData.health, 200);
+    }
+    
+    if (url === '/api/properties/public' || url === '/properties/public') {
+      return createMockResponse(mockData.properties, 200);
+    }
+    
+    if (url === '/api/test/public') {
+      return createMockResponse({
+        message: 'Public test endpoint is working!',
+        timestamp: new Date().toISOString(),
+        status: 'success'
+      }, 200);
+    }
+    
+    throw createMockError('Not Found', 404, { message: 'Endpoint not found', url });
+  },
+  
+  post: async (url, data, config) => {
+    console.log('🔧 Mock POST:', url, data);
+    
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    if (url === '/api/auth/register' || url === '/auth/register') {
+      // Simulate user already exists error
+      throw createMockError('Conflict', 409, mockData.authRegister);
+    }
+    
+    return createMockResponse(
+      { success: true, message: 'Created', id: Date.now(), data }, 
+      201, 
+      'Created'
+    );
+  },
+  
+  put: async (url, data, config) => {
+    console.log('🔧 Mock PUT:', url, data);
+    await new Promise(resolve => setTimeout(resolve, 300));
+    return createMockResponse({ success: true, message: 'Updated', data }, 200);
+  },
+  
+  delete: async (url, config) => {
+    console.log('🔧 Mock DELETE:', url);
+    await new Promise(resolve => setTimeout(resolve, 300));
+    return createMockResponse({ success: true, message: 'Deleted' }, 200);
+  },
+  
+  patch: async (url, data, config) => {
+    console.log('🔧 Mock PATCH:', url, data);
+    await new Promise(resolve => setTimeout(resolve, 300));
+    return createMockResponse({ success: true, message: 'Patched', data }, 200);
+  },
+  
+  checkBackendReachability: async () => {
+    console.log('🔧 Mock: Checking backend reachability');
+    await new Promise(resolve => setTimeout(resolve, 500));
+    return true;
+  },
+  
+  clearAuthData: () => {
+    console.log('🔧 Mock: Clearing auth data');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('auth_user');
+  },
+  
+  // Add interceptors for compatibility
+  interceptors: {
+    request: { use: () => ({ eject: () => {} }) },
+    response: { use: () => ({ eject: () => {} }) }
+  }
+};
+
+// Add request interceptor for auth token
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token') || localStorage.getItem('auth_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    
-    if (isDevelopment) {
-      console.log(`🚀 API Request: ${config.method?.toUpperCase()} ${config.url}`);
-    }
-    
     return config;
   },
   (error) => {
-    console.error('❌ Request interceptor error:', error);
-    return Promise.reject(enhanceError(error));
+    return Promise.reject(error);
   }
 );
 
+<<<<<<< Updated upstream
 // Response interceptor
 Api.interceptors.response.use(
   (response) => {
     if (isDevelopment) {
       console.log(`✅ API Success: ${response.status} ${response.config.url}`);
+=======
+// Add response interceptor for error handling
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('auth_user');
     }
-    return response;
-  },
-  async (error) => {
-    const originalRequest = error.config;
-    
-    // Handle cancellation (like no internet)
-    if (axios.isCancel(error)) {
-      console.error('❌ Request cancelled:', error.message);
-      return Promise.reject(enhanceError(error));
-    }
-
-    // Handle network errors
-    if (!error.response) {
-      const networkError = enhanceError(error);
-      console.error('🌐 Network Error:', networkError.message);
-      
-      // Check if backend is reachable
-      if (isDevelopment) {
-        checkBackendReachability();
-      }
-      
-      return Promise.reject(networkError);
-    }
-
-    // Handle 401 Unauthorized (token refresh logic)
-    if (error.response.status === 401 && !originalRequest._retry) {
-      return handleTokenRefresh(error, originalRequest);
-    }
-
-    // Handle other HTTP errors
-    return handleHttpError(error);
+    return Promise.reject(error);
   }
 );
 
-// Enhanced error handler for components
-export const handleApiError = (error) => {
-  if (error.isNetworkError) {
-    return error.message;
-  }
+// Real API functions - wrap the axios instance
+const realApi = {
+  get: (url, config) => axiosInstance.get(url, config),
+  post: (url, data, config) => axiosInstance.post(url, data, config),
+  put: (url, data, config) => axiosInstance.put(url, data, config),
+  delete: (url, config) => axiosInstance.delete(url, config),
+  patch: (url, data, config) => axiosInstance.patch(url, data, config),
   
-  if (error.response?.data?.message) {
-    return error.response.data.message;
-  }
+  checkBackendReachability: async () => {
+    try {
+      const response = await axiosInstance.get('/api/health', {
+        timeout: 3000,
+        validateStatus: () => true
+      });
+      return response.status < 500;
+    } catch (error) {
+      console.error('Backend reachability check failed:', error.message);
+      return false;
+>>>>>>> Stashed changes
+    }
+  },
   
-  if (error.message) {
-    return error.message;
-  }
+  clearAuthData: () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('auth_user');
+  },
   
-  return 'An unexpected error occurred';
+  // Pass through interceptors from axios instance
+  interceptors: axiosInstance.interceptors
 };
 
-export const isOnline = () => navigator.onLine;
+// Utility function to handle API errors
+const handleApiError = (error) => {
+  if (error.response) {
+    const { status, data } = error.response;
+    return `Server Error ${status}: ${data?.message || data?.error || 'Unknown server error'}`;
+  } else if (error.request) {
+    return 'Network Error: No response from server. Please check your connection.';
+  } else {
+    return `Request Error: ${error.message}`;
+  }
+};
 
+<<<<<<< Updated upstream
 // Add utility methods to Api instance for convenience
 Api.clearAuthData = clearAuthData;
 Api.checkBackendReachability = checkBackendReachability;
 
 export default Api;
+=======
+// Add handleApiError to both APIs
+mockApi.handleApiError = handleApiError;
+realApi.handleApiError = handleApiError;
+
+// Choose which API to use
+const api = USE_MOCK_API ? mockApi : realApi;
+
+// Export the chosen API instance
+export default api;
+// Export handleApiError separately
+export { handleApiError };
+>>>>>>> Stashed changes
