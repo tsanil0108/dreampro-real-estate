@@ -432,7 +432,7 @@ const About = () => {
                             <Link to="/properties" className="about-cta-btn about-cta-realestate">
                                 <FaHome /> Explore Properties
                             </Link>
-                            <Link to="/interior-work" className="about-cta-btn about-cta-interior">
+                            <Link to="/WorkCategories" className="about-cta-btn about-cta-interior">
                                 <FaPaintRoller /> View Interior Services
                             </Link>
                             <Link to="/contact" className="about-cta-btn about-cta-contact">

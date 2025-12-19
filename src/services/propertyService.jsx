@@ -1,5 +1,5 @@
 // src/services/propertyService.js
-import Api from './Api';
+// import Api from './Api';
 
 
 class PropertiesService {

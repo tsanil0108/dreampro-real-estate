@@ -1,5 +1,5 @@
 
-import api from './Api';
+// import api from './Api';
 
 class BookingService {
   // Create new booking

@@ -1,4 +1,4 @@
-import Appi from './Api';
+// import Appi from './Api';
 
 export const uploadService = {
   // Upload single file

@@ -7,11 +7,20 @@ import {
   FaPhone, 
   FaCheckCircle, 
   FaUser, 
-  FaMapMarkerAlt 
+  FaMapMarkerAlt,
+  FaWhatsapp,
+  FaCopy,
+  FaExternalLinkAlt
 } from "react-icons/fa";
 import "./BookVisitt.css";
 
 const BookVisit = () => {
+  // WhatsApp numbers for different services
+  const WHATSAPP_NUMBERS = {
+    "interior": "917304603314", // Interior work number
+    "real-estate": "918356962978" // Real estate number
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -22,6 +31,11 @@ const BookVisit = () => {
     selectedCategory: "" // "real-estate" or "interior"
   });
 
+  const [showMessageBox, setShowMessageBox] = useState(false);
+  const [generatedMessage, setGeneratedMessage] = useState("");
+  const [targetNumber, setTargetNumber] = useState("");
+  const [copySuccess, setCopySuccess] = useState("");
+
   const [activeCategory, setActiveCategory] = useState("interior");
 
   const serviceCategories = [
@@ -30,6 +44,7 @@ const BookVisit = () => {
       name: "Interior Work",
       icon: <FaPaintRoller />,
       description: "Carpentry, furniture, and design services",
+      whatsappNumber: WHATSAPP_NUMBERS.interior,
       services: [
         { id: "carpentry", name: "Carpentry Work", icon: "🛠️" },
         { id: "furniture", name: "Custom Furniture", icon: "🛋️" },
@@ -44,6 +59,7 @@ const BookVisit = () => {
       name: "Real Estate",
       icon: <FaHome />,
       description: "Property visits and consultations",
+      whatsappNumber: WHATSAPP_NUMBERS["real-estate"],
       services: [
         { id: "property-visit", name: "Property Visit", icon: "🏠" },
         { id: "home-loan", name: "Home Loan Guidance", icon: "💰" },
@@ -83,60 +99,158 @@ const BookVisit = () => {
     });
   };
 
+  const generateMessage = () => {
+    const selectedCategory = serviceCategories.find(cat => cat.id === formData.selectedCategory);
+    const selectedService = selectedCategory.services.find(s => s.id === formData.serviceType);
+    
+    let message = `*NEW SERVICE BOOKING REQUEST*\n\n`;
+    message += `👤 *Name:* ${formData.name}\n`;
+    message += `📱 *Phone:* ${formData.phone}\n`;
+    message += `📋 *Service Category:* ${selectedCategory.name}\n`;
+    message += `🛠️ *Service Type:* ${selectedService.name}\n`;
+    
+    if (formData.date) {
+      const dateObj = new Date(formData.date);
+      const formattedDate = dateObj.toLocaleDateString('en-IN', {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+      message += `📅 *Preferred Date:* ${formattedDate}\n`;
+    }
+    if (formData.time) message += `⏰ *Preferred Time:* ${formData.time}\n`;
+    if (formData.address) message += `📍 *Address:* ${formData.address}\n\n`;
+    
+    message += `✅ I'm interested in proceeding with this service. Please contact me.\n\n`;
+    message += `_Booking made through website_`;
+    
+    return message;
+  };
+
+  const createWhatsAppUrl = (number, message) => {
+    // Multiple URL formats to try
+    const formats = [
+      `whatsapp://send?phone=${number}&text=${encodeURIComponent(message)}`,
+      `https://wa.me/${number}?text=${encodeURIComponent(message)}`,
+      `https://api.whatsapp.com/send?phone=${number}&text=${encodeURIComponent(message)}`
+    ];
+    return formats;
+  };
+
+  const openWhatsApp = (url) => {
+    // Try to open WhatsApp
+    window.location.href = url;
+    
+    // Fallback: Open in new tab after a delay
+    setTimeout(() => {
+      window.open(url, '_blank');
+    }, 500);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
     if (!formData.name || !formData.phone || !formData.selectedCategory || !formData.serviceType) {
-      alert("Please fill in all required fields");
+      alert("⚠️ Please fill in all required fields marked with *");
+      return;
+    }
+
+    // Validate phone number
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(formData.phone.replace(/\D/g, ''))) {
+      alert("❌ Please enter a valid 10-digit phone number");
       return;
     }
 
     const selectedCategory = serviceCategories.find(cat => cat.id === formData.selectedCategory);
-    const selectedService = selectedCategory.services.find(s => s.id === formData.serviceType);
+    const message = generateMessage();
+    const number = selectedCategory.whatsappNumber;
     
-    const bookingData = {
-      ...formData,
-      category: selectedCategory.name,
-      service: selectedService.name
-    };
+    // Generate and show message
+    setGeneratedMessage(message);
+    setTargetNumber(number);
+    setShowMessageBox(true);
+    setCopySuccess("");
+  };
 
-    console.log("Booking Data:", bookingData);
+  const handleCopyMessage = () => {
+    navigator.clipboard.writeText(generatedMessage)
+      .then(() => {
+        setCopySuccess("✓ Message copied to clipboard!");
+        setTimeout(() => setCopySuccess(""), 3000);
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+        setCopySuccess("Failed to copy");
+      });
+  };
+
+  const handleCopyNumber = () => {
+    navigator.clipboard.writeText(`+${targetNumber}`)
+      .then(() => {
+        setCopySuccess("✓ Number copied to clipboard!");
+        setTimeout(() => setCopySuccess(""), 3000);
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+        setCopySuccess("Failed to copy");
+      });
+  };
+
+  const handleSendWhatsApp = () => {
+    const urls = createWhatsAppUrl(targetNumber, generatedMessage);
     
-    alert(`Thank you ${formData.name}!\n\nYour booking for ${selectedService.name} has been confirmed.\nOur expert will contact you shortly at ${formData.phone}.`);
+    // Try first format
+    openWhatsApp(urls[0]);
     
-    // Reset form
-    setFormData({
-      name: "",
-      phone: "",
-      serviceType: "",
-      date: "",
-      time: "",
-      address: "",
-      selectedCategory: ""
-    });
-    setActiveCategory("interior");
+    // If first doesn't work, user can try others
+    console.log("WhatsApp URLs:", urls);
+  };
+
+  const handleManualSend = () => {
+    const selectedCategory = serviceCategories.find(cat => cat.id === formData.selectedCategory);
+    
+    alert(
+      `📱 *Manual WhatsApp Instructions:*\n\n` +
+      `1. Open WhatsApp on your phone\n` +
+      `2. Save this number: +${selectedCategory.whatsappNumber}\n` +
+      `3. Send this message:\n\n` +
+      `${generatedMessage}\n\n` +
+      `OR\n` +
+      `4. Click "Open WhatsApp" below to try automatic sending`
+    );
   };
 
   const currentServices = serviceCategories.find(cat => cat.id === activeCategory)?.services || [];
 
   return (
     <div className="book-visit-container">
-      <h1>Book Service Visit</h1>
-      <p>Schedule a visit with our experts for interior work or real estate services</p>
+      <div className="whatsapp-header">
+        <FaWhatsapp className="whatsapp-icon-large" />
+        <h1>📱 Book Service Visit via WhatsApp</h1>
+        <p className="whatsapp-subtitle">
+          Fill the form below and we'll help you send a WhatsApp message
+        </p>
+      </div>
 
       {/* Category Selection */}
       <div className="category-selection">
-        <h3>Select Service Category</h3>
+        <h3>📋 Select Service Category</h3>
         <div className="category-tabs">
           {serviceCategories.map(category => (
             <button
               key={category.id}
+              type="button"
               className={`category-tab ${activeCategory === category.id ? 'active' : ''}`}
               onClick={() => handleCategorySelect(category.id)}
             >
               <span className="tab-icon">{category.icon}</span>
               <span className="tab-name">{category.name}</span>
               <span className="tab-description">{category.description}</span>
+              <span className="tab-whatsapp">
+                <FaWhatsapp /> WhatsApp: +{category.whatsappNumber}
+              </span>
             </button>
           ))}
         </div>
@@ -144,13 +258,16 @@ const BookVisit = () => {
 
       {/* Service Selection */}
       <div className="services-section">
-        <h3>Select Service Type</h3>
+        <h3>🛠️ Select Service Type</h3>
         <div className="services-grid">
           {currentServices.map(service => (
             <div 
               key={service.id}
               className={`service-card ${formData.serviceType === service.id ? 'selected' : ''}`}
               onClick={() => handleServiceSelect(service.id)}
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => e.key === 'Enter' && handleServiceSelect(service.id)}
             >
               <span className="service-icon">{service.icon}</span>
               <span className="service-name">{service.name}</span>
@@ -171,30 +288,37 @@ const BookVisit = () => {
               placeholder="Enter your full name"
               onChange={handleChange}
               required
+              minLength="2"
+              autoComplete="name"
             />
           </div>
 
           <div className="form-group">
-            <label><FaPhone /> Phone Number *</label>
+            <label><FaPhone /> WhatsApp Number *</label>
             <input
               type="tel"
               name="phone"
               value={formData.phone}
-              placeholder="Enter phone number"
+              placeholder="Enter 10-digit WhatsApp number"
               onChange={handleChange}
               required
+              pattern="[0-9]{10}"
+              title="Please enter a 10-digit phone number"
+              autoComplete="tel"
             />
           </div>
         </div>
 
         <div className="form-group">
-          <label><FaMapMarkerAlt /> Your Address</label>
-          <input
-            type="text"
+          <label><FaMapMarkerAlt /> Site/Property Address</label>
+          <textarea
             name="address"
             value={formData.address}
-            placeholder="Enter site/property address"
+            placeholder="Enter site/property address (optional)"
             onChange={handleChange}
+            autoComplete="street-address"
+            rows="3"
+            className="address-textarea"
           />
         </div>
 
@@ -217,7 +341,7 @@ const BookVisit = () => {
               value={formData.time}
               onChange={handleChange}
             >
-              <option value="">Select preferred time</option>
+              <option value="">Select preferred time (optional)</option>
               {timeSlots.map(time => (
                 <option key={time} value={time}>{time}</option>
               ))}
@@ -225,76 +349,184 @@ const BookVisit = () => {
           </div>
         </div>
 
+        {/* Submit Button */}
         <button 
           type="submit" 
-          className="submit-btn"
+          className="whatsapp-submit-btn"
           disabled={!formData.name || !formData.phone || !formData.selectedCategory || !formData.serviceType}
         >
-          Book Free Consultation
+          <FaWhatsapp className="whatsapp-btn-icon" />
+          Generate WhatsApp Message
+          <span className="btn-subtext">We'll create and help you send it</span>
         </button>
 
-        <p className="note">
-          Our expert will visit your site, provide consultation, and give you a detailed proposal.
-        </p>
+        <div className="whatsapp-info">
+          <FaWhatsapp className="info-icon" />
+          <p>
+            <strong>How it works:</strong> Fill the form, click generate, and we'll show you the message to send via WhatsApp.
+          </p>
+        </div>
       </form>
+
+      {/* WhatsApp Message Box */}
+      {showMessageBox && (
+        <div className="message-box-overlay">
+          <div className="message-box">
+            <div className="message-box-header">
+              <h3><FaWhatsapp /> Your WhatsApp Message is Ready!</h3>
+              <button 
+                className="close-btn"
+                onClick={() => setShowMessageBox(false)}
+              >
+                ×
+              </button>
+            </div>
+            
+            <div className="message-box-content">
+              <div className="target-info">
+                <h4>Send to:</h4>
+                <div className="number-display">
+                  <FaWhatsapp className="whatsapp-icon" />
+                  <span className="phone-number">+{targetNumber}</span>
+                  <button 
+                    className="copy-btn small"
+                    onClick={handleCopyNumber}
+                    title="Copy phone number"
+                  >
+                    <FaCopy /> Copy Number
+                  </button>
+                </div>
+              </div>
+
+              <div className="message-preview">
+                <h4>Your Message:</h4>
+                <div className="message-text">
+                  {generatedMessage.split('\n').map((line, index) => (
+                    <div key={index} className="message-line">
+                      {line}
+                    </div>
+                  ))}
+                </div>
+                <div className="message-actions">
+                  <button 
+                    className="copy-btn"
+                    onClick={handleCopyMessage}
+                  >
+                    <FaCopy /> Copy Message
+                  </button>
+                  <button 
+                    className="whatsapp-btn"
+                    onClick={handleSendWhatsApp}
+                  >
+                    <FaWhatsapp /> Open WhatsApp
+                  </button>
+                </div>
+              </div>
+
+              <div className="instructions">
+                <h4>📱 How to Send:</h4>
+                <ol>
+                  <li>Click "Open WhatsApp" to try automatic sending</li>
+                  <li>OR Copy the message and number above</li>
+                  <li>Open WhatsApp on your phone</li>
+                  <li>Save the number +{targetNumber} to contacts</li>
+                  <li>Paste and send the message</li>
+                </ol>
+              </div>
+
+              {copySuccess && (
+                <div className="copy-success">
+                  {copySuccess}
+                </div>
+              )}
+
+              <div className="manual-fallback">
+                <button 
+                  className="manual-btn"
+                  onClick={handleManualSend}
+                >
+                  <FaExternalLinkAlt /> Need Help? Click for step-by-step instructions
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Contact Numbers Section */}
+      <div className="contact-numbers">
+        <h3>📞 Direct WhatsApp Numbers</h3>
+        <div className="numbers-grid">
+          {serviceCategories.map(category => {
+            const message = `Hello! I'm interested in ${category.name} services. Can you please provide more information?`;
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${category.whatsappNumber}&text=${encodeURIComponent(message)}`;
+            
+            return (
+              <div key={category.id} className="number-card">
+                <div className="number-card-header">
+                  {category.icon}
+                  <h4>{category.name}</h4>
+                </div>
+                <div className="number-card-body">
+                  <div className="whatsapp-number">
+                    <FaWhatsapp />
+                    <span>+{category.whatsappNumber}</span>
+                  </div>
+                  <p className="number-description">{category.description}</p>
+                  <a 
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="direct-whatsapp-link"
+                    onClick={(e) => {
+                      // Try to open in app first
+                      e.preventDefault();
+                      window.location.href = whatsappUrl;
+                      setTimeout(() => {
+                        window.open(whatsappUrl, '_blank');
+                      }, 500);
+                    }}
+                  >
+                    <FaWhatsapp /> Chat Directly
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
 
       {/* Benefits Section */}
       <div className="benefits">
-        <h3>Why Choose Our Services?</h3>
-        
-        {activeCategory === "interior" ? (
-          <div className="benefits-grid">
-            <div className="benefit">
-              <FaCheckCircle className="benefit-icon" />
-              <h4>Free Site Visit</h4>
-              <p>Expert site inspection and measurement</p>
-            </div>
-            <div className="benefit">
-              <FaCheckCircle className="benefit-icon" />
-              <h4>Professional Craftsmen</h4>
-              <p>Skilled carpenters and designers</p>
-            </div>
-            <div className="benefit">
-              <FaCheckCircle className="benefit-icon" />
-              <h4>3D Design Mockup</h4>
-              <p>Visualize your space before work begins</p>
-            </div>
-            <div className="benefit">
-              <FaCheckCircle className="benefit-icon" />
-              <h4>Material Guidance</h4>
-              <p>Expert advice on materials and finishes</p>
-            </div>
+        <h3>✨ Why Book via WhatsApp?</h3>
+        <div className="benefits-grid">
+          <div className="benefit">
+            <FaWhatsapp className="benefit-icon" />
+            <h4>Instant Response</h4>
+            <p>Get immediate confirmation and quick replies</p>
           </div>
-        ) : (
-          <div className="benefits-grid">
-            <div className="benefit">
-              <FaCheckCircle className="benefit-icon" />
-              <h4>Property Tours</h4>
-              <p>Visit multiple properties with experts</p>
-            </div>
-            <div className="benefit">
-              <FaCheckCircle className="benefit-icon" />
-              <h4>Home Loan Assistance</h4>
-              <p>Guidance on financing options</p>
-            </div>
-            <div className="benefit">
-              <FaCheckCircle className="benefit-icon" />
-              <h4>Legal Support</h4>
-              <p>Documentation and legal assistance</p>
-            </div>
-            <div className="benefit">
-              <FaCheckCircle className="benefit-icon" />
-              <h4>Investment Advice</h4>
-              <p>Expert property investment guidance</p>
-            </div>
+          <div className="benefit">
+            <FaCheckCircle className="benefit-icon" />
+            <h4>Free Consultation</h4>
+            <p>No charges for site visits and expert advice</p>
           </div>
-        )}
+          <div className="benefit">
+            <FaCheckCircle className="benefit-icon" />
+            <h4>Easy Communication</h4>
+            <p>Share photos, videos, and documents easily</p>
+          </div>
+          <div className="benefit">
+            <FaCheckCircle className="benefit-icon" />
+            <h4>Track Conversations</h4>
+            <p>Keep all communication in one place</p>
+          </div>
+        </div>
       </div>
 
       {/* Current Selection Display */}
-      {formData.selectedCategory && formData.serviceType && (
+      {formData.selectedCategory && formData.serviceType && !showMessageBox && (
         <div className="selection-summary">
-          <h4>You have selected:</h4>
+          <h4>📝 Ready to generate message:</h4>
           <div className="selected-items">
             <span className="selected-category">
               {serviceCategories.find(cat => cat.id === formData.selectedCategory)?.name}
@@ -304,8 +536,24 @@ const BookVisit = () => {
               {currentServices.find(s => s.id === formData.serviceType)?.name}
             </span>
           </div>
+          <div className="whatsapp-target">
+            <FaWhatsapp />
+            Will be sent to: +{serviceCategories.find(cat => cat.id === formData.selectedCategory)?.whatsappNumber}
+          </div>
         </div>
       )}
+
+      {/* Troubleshooting Tips */}
+      <div className="troubleshooting-tips">
+        <h4>⚠️ WhatsApp Issues?</h4>
+        <p>If WhatsApp links don't work:</p>
+        <ul>
+          <li>1. Make sure WhatsApp is installed on your device</li>
+          <li>2. Use "Copy Message" and send manually</li>
+          <li>3. Save our numbers: +91 73046 03314 (Interior) or +91 83569 62978 (Real Estate)</li>
+          <li>4. Try from your mobile device instead of desktop</li>
+        </ul>
+      </div>
     </div>
   );
 };

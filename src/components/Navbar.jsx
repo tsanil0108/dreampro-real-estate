@@ -118,6 +118,16 @@ const Navbar = () => {
                             Contact
                         </Link>
 
+
+                           <Link
+                                    to="/About"
+                                    className={`dp-nav-link dp-nav-link--auth dp-nav-link--login ${isActiveLink("/login") ? "dp-nav-link--active" : ""}`}
+                                    onClick={handleLinkClick}
+                                >
+    
+                                    About
+                                </Link>
+
                         {/* === MY ACCOUNT LINK (Desktop) === */}
                         {isAuthenticated() && (
                             <Link
@@ -146,21 +156,11 @@ const Navbar = () => {
 
                         {!isAuthenticated() ? (
                             <>
-                                <Link
-                                    to="/login"
-                                    className={`dp-nav-link dp-nav-link--auth dp-nav-link--login ${isActiveLink("/login") ? "dp-nav-link--active" : ""}`}
-                                    onClick={handleLinkClick}
-                                >
-                                    Login
-                                </Link>
+                               
+                               
 
-                                <Link
-                                    to="/signup"
-                                    className={`dp-nav-link dp-nav-link--auth dp-nav-link--signup ${isActiveLink("/signup") ? "dp-nav-link--active" : ""}`}
-                                    onClick={handleLinkClick}
-                                >
-                                    Signup
-                                </Link>
+                              
+                              
                             </>
                         ) : (
                             <div className="dp-user-menu">
@@ -296,8 +296,8 @@ const Navbar = () => {
                 {/* MOBILE AUTH AREA */}
                 {!isAuthenticated() ? (
                     <>
-                        <Link to="/login" className="dp-nav-link dp-nav-link--mobile dp-nav-link--login" onClick={handleLinkClick}>Login</Link>
-                        <Link to="/signup" className="dp-nav-link dp-nav-link--mobile dp-nav-link--signup" onClick={handleLinkClick}>Signup</Link>
+                        <Link to="/About" className="dp-nav-link dp-nav-link--mobile dp-nav-link--login" onClick={handleLinkClick}>About</Link>
+                        {/* <Link to="/signup" className="dp-nav-link dp-nav-link--mobile dp-nav-link--signup" onClick={handleLinkClick}>Signup</Link> */}
                     </>
                 ) : (
                     <>

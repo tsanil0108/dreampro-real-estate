@@ -1,5 +1,5 @@
 // src/services/connectionTest.js
-import Api from "./Api";
+// import Api from "./Api";
 
 const connectionTest = async () => {
   try {

@@ -7,11 +7,7 @@ import {
   FaCalendarAlt,
   FaArrowRight
 } from 'react-icons/fa';
-<<<<<<< Updated upstream
 import './Interior.css';
-=======
-// import './Interior.css';
->>>>>>> Stashed changes
 
 const GalleryItem = ({ 
   id, 

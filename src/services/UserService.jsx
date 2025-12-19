@@ -1,5 +1,5 @@
 // src/services/UsersService.js
-import Api from './Api';
+// import Api from './Api';
 
 const UserService = {
   // Get user profile
